@@ -1,0 +1,91 @@
+/* client/app/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+  --color-jify-primary: #f502a0;
+  --color-jify-primary-50: #fdf2f8;
+  --color-jify-primary-100: #fce7f3;
+  --color-jify-primary-200: #fbcfe8;
+  --color-jify-primary-300: #f9a8d4;
+  --color-jify-primary-400: #f472b6;
+  --color-jify-primary-500: #f502a0;
+  --color-jify-primary-600: #db2777;
+  --color-jify-primary-700: #be185d;
+  --color-jify-primary-800: #9d174d;
+  --color-jify-primary-900: #831843;
+}
+
+  body {
+    @apply bg-white text-gray-800 font-sans;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-sans text-gray-900;
+  }
+}
+
+@layer utilities {
+  .btn-primary {
+    @apply bg-jify-primary hover:bg-jify-primary/90 text-white font-medium py-2 px-5 rounded-lg transition-all shadow-sm hover:shadow;
+  }
+
+  .btn-outline {
+    @apply border-2 border-jify-primary text-jify-primary hover:bg-jify-primary/5;
+  }
+
+  .gradient-banner {
+    background: linear-gradient(135deg, #b76ec9 0%, #8a2be2 100%);
+  }
+
+  /* Add to your global CSS */
+@keyframes infinite-scroll-slow {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-infinite-scroll-slow {
+  animation: infinite-scroll-slow 40s linear infinite;
+}
+
+.animate-infinite-scroll-slow:hover {
+  animation-play-state: paused;
+}
+
+/* Add to your global CSS */
+@keyframes infinite-scroll-slower {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* In your globals.css or equivalent */
+@keyframes infinite-scroll-faster {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%); /* Moves one full set of categories */
+  }
+}
+
+.animate-infinite-scroll-faster {
+  animation: infinite-scroll-faster 20s linear infinite; /* 20% faster than 40s */
+  will-change: transform;
+}
+
+/* Pause on hover */
+.animate-infinite-scroll-faster:hover {
+  animation-play-state: paused;
+}
+  
+}

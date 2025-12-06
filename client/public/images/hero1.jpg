@@ -1,0 +1,8 @@
+﻿<svg width='1200' height='600' xmlns='http://www.w3.org/2000/svg'>
+  <rect width='1200' height='600' fill='#b76ec9'/>
+  <text x='100' y='200' font-family='Poppins, sans-serif' font-size='48' font-weight='700' fill='white'>Luxe Wigs.</text>
+  <text x='100' y='280' font-family='Poppins, sans-serif' font-size='48' font-weight='700' fill='#fbcfe8'>Professional Care.</text>
+  <text x='100' y='360' font-family='Inter, sans-serif' font-size='20' fill='white' opacity='0.9'>Premium human hair wigs & expert treatment — all in one place.</text>
+  <rect x='100' y='420' width='200' height='50' rx='8' fill='white'/>
+  <text x='200' y='452' text-anchor='middle' font-family='Inter, sans-serif' font-size='16' font-weight='600' fill='#b76ec9'>Shop Wigs</text>
+</svg>

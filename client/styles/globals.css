@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --jify-primary: 171 69% 61%; /* hsl equivalent of #B76EC9 */
+  }
+
+  body {
+    @apply bg-white text-gray-800 font-sans;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-heading text-gray-900;
+  }
+
+  .btn-primary {
+    @apply bg-jify-primary hover:bg-jify-primary/90 text-white font-medium py-2 px-5 rounded-lg transition-all shadow-sm hover:shadow;
+  }
+
+  .btn-outline {
+    @apply border-2 border-jify-primary text-jify-primary hover:bg-jify-primary/5;
+  }
+
+  /* Minimal gradient usage — only for hero/banner emphasis */
+  .gradient-banner {
+    background: linear-gradient(135deg, #b76ec9 0%, #8a2be2 100%);
+  }
+}

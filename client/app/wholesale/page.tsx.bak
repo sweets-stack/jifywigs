@@ -1,0 +1,448 @@
+import { Metadata } from 'next';
+import { useState } from 'react';
+import { Button } from '@/components/ui/Button';
+import { ArrowRightIcon, BuildingOfficeIcon, PhoneIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
+
+export const metadata: Metadata = {
+  title: 'Wholesale Enquiries | JifyWigs',
+  description: 'Partner with JifyWigs for wholesale wig distribution. Fill out our enquiry form to get started.',
+};
+
+export default function WholesalePage() {
+  const [formData, setFormData] = useState({
+    businessName: '',
+    contactPerson: '',
+    email: '',
+    phone: '',
+    location: '',
+    message: '',
+    // honeypot field to catch bots
+    company: '',
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | textareaHTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Simple bot check
+    if (formData.company) return;
+    
+    setIsSubmitting(true);
+    
+    try {
+      // In real app: POST to /api/wholesale
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      setSubmitSuccess(true);
+      setFormData({
+        businessName: '',
+        contactPerson: '',
+        email: '',
+        phone: '',
+        location: '',
+        message: '',
+        company: '',
+      });
+    } catch (error) {
+      alert('Failed to submit. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+   const getWhatsAppMessage = () => {
+    const msg = `*JIFYWIGS WHOLESALE ENQUIRY*\n\n` +
+      `Business: ${formData.businessName}\n` +
+      `Contact: ${formData.contactPerson}\n` +
+      `Email: ${formData.email}\n` +
+      `Phone: ${formData.phone}\n` +
+      `Location: ${formData.location}\n` +
+      `Message: ${formData.message}`;
+    return encodeURIComponent(msg);
+  };
+
+  // Telegram pre-filled message
+  const getTelegramMessage = () => {
+    const msg = `*JifyWigs Wholesale Enquiry*\n\n` +
+      `Business: ${formData.businessName}\n` +
+      `Contact: ${formData.contactPerson}\n` +
+      `Email: ${formData.email}\n` +
+      `Phone: ${formData.phone}\n` +
+      `Location: ${formData.location}\n` +
+      `Message: ${formData.message}`;
+    return encodeURIComponent(msg);
+  };
+
+  const whatsappUrl = `https://wa.me/2349049355400?text=${getWhatsAppMessage()}`;
+  const telegramUrl = `https://t.me/jifywigs_wholesale?start=${getTelegramMessage()}`;
+
+
+  if (submitSuccess) {
+    return (
+      <div className="min-h-screen bg-white py-20">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="bg-gradient-to-br from-jify-primary-50 to-white rounded-3xl p-12 shadow-lg">
+            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg className="w-8 h-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">Thank You!</h1>
+            <p className="text-xl text-gray-600 mb-8">
+              Your wholesale enquiry has been received. Our partnerships team will contact you within 1-2 business days.
+            </p>
+           {/* Multi-Channel Contact Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+              {/* Email Card */}
+              <div className="bg-white border border-gray-200 rounded-2xl p-6 text-center">
+                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <EnvelopeIcon className="w-6 h-6 text-blue-600" />
+                </div>
+                <h3 className="font-bold text-gray-900 mb-2">Email Confirmation</h3>
+                <p className="text-gray-600 text-sm">
+                  A copy has been sent to <br />
+                  <span className="font-mono">{formData.email}</span>
+                </p>
+              </div>
+              
+              {/* WhatsApp Card */}
+              <div className="bg-white border border-gray-200 rounded-2xl p-6 text-center hover:shadow-md transition-shadow">
+                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                  </svg>
+                </div>
+                <h3 className="font-bold text-gray-900 mb-2">WhatsApp</h3>
+                <p className="text-gray-600 text-sm mb-4">
+                  Pre-filled with your details
+                </p>
+                <a 
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center w-full bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-medium"
+                >
+                  Open WhatsApp
+                  <ArrowRightIcon className="w-4 h-4 ml-2" />
+                </a>
+                <div className="mt-3">
+                  <img 
+                    src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(whatsappUrl)}`} 
+                    alt="WhatsApp QR Code" 
+                    className="w-24 h-24 mx-auto"
+                  />
+                  <p className="text-xs text-gray-500 mt-2">Scan to open on mobile</p>
+                </div>
+              </div>
+              
+              {/* Telegram Card */}
+              <div className="bg-white border border-gray-200 rounded-2xl p-6 text-center hover:shadow-md transition-shadow">
+                <div className="w-12 h-12 bg-blue-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.278 7.372l-2.434 12.51c-.237 1.219-1.176 1.56-2.219.816l-3.86-3.016-1.792 2.948c-.236.388-.608.562-1.008.468l.276-4.042 6.623-5.827c.34-.298-.098-.458-.522-.106l-7.571 6.309-3.276-.843c-1.173-.302-1.137-1.208.137-1.562l14.27-4.034c1.017-.287 1.838.254 1.465 1.272z" />
+                  </svg>
+                </div>
+                <h3 className="font-bold text-gray-900 mb-2">Telegram</h3>
+                <p className="text-gray-600 text-sm mb-4">
+                  Pre-filled with your details
+                </p>
+                <a 
+                  href={telegramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center w-full bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-medium"
+                >
+                  Open Telegram
+                  <ArrowRightIcon className="w-4 h-4 ml-2" />
+                </a>
+                <div className="mt-3">
+                  <img 
+                    src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(telegramUrl)}`} 
+                    alt="Telegram QR Code" 
+                    className="w-24 h-24 mx-auto"
+                  />
+                  <p className="text-xs text-gray-500 mt-2">Scan to open on mobile</p>
+                </div>
+              </div>
+            </div>
+            
+            <Button 
+              onClick={() => setSubmitSuccess(false)}
+              variant="outline"
+              className="mt-12 border-jify-primary-500 text-jify-primary-500 hover:bg-jify-primary-50/10"
+            >
+              Submit Another Enquiry
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+
+  return (
+    <div className="min-h-screen bg-white">
+      {/* Hero */}
+      <section className="bg-gradient-to-br from-jify-primary-50 to-white py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <span className="inline-flex items-center px-4 py-2 bg-jify-primary-100 rounded-full text-sm font-semibold text-jify-primary-700 mb-6">
+            <BuildingOfficeIcon className="w-4 h-4 mr-2" />
+            WHOLESALE PARTNERSHIPS
+          </span>
+          <h1 className="text-5xl font-bold text-gray-900 mb-6">
+            Become a <span className="text-jify-primary-600">Retail Partner</span>
+          </h1>
+          <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto">
+            JifyWigs partners with salons, boutiques, and resellers across Nigeria and West Africa. 
+            Access our premium wig collections at wholesale pricing with dedicated support.
+          </p>
+        </div>
+      </section>
+
+      {/* Info Cards */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <div className="bg-jify-primary-50 rounded-2xl p-8 text-center">
+              <div className="w-16 h-16 bg-jify-primary-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg className="w-8 h-8 text-jify-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Quality Guarantee</h3>
+              <p className="text-gray-600">
+                Premium human hair sourced ethically, with full quality control at every stage.
+              </p>
+            </div>
+            <div className="bg-jify-primary-50 rounded-2xl p-8 text-center">
+              <div className="w-16 h-16 bg-jify-primary-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg className="w-8 h-8 text-jify-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Dedicated Support</h3>
+              <p className="text-gray-600">
+                Your personal account manager and priority order processing.
+              </p>
+            </div>
+            <div className="bg-jify-primary-50 rounded-2xl p-8 text-center">
+              <div className="w-16 h-16 bg-jify-primary-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg className="w-8 h-8 text-jify-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Flexible Terms</h3>
+              <p className="text-gray-600">
+                Customized pricing, bulk discounts, and consignment options available.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-white to-jify-primary-50 rounded-3xl p-8 md:p-12 shadow-lg">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              {/* Left: Info */}
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">Why Partner With Us?</h2>
+                <ul className="space-y-4 mb-8">
+                  <li className="flex items-start">
+                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-jify-primary-100 flex items-center justify-center mt-0.5 mr-3">
+                      <svg className="w-3 h-3 text-jify-primary-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <span className="text-gray-700">Premium quality at competitive wholesale prices</span>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-jify-primary-100 flex items-center justify-center mt-0.5 mr-3">
+                      <svg className="w-3 h-3 text-jify-primary-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <span className="text-gray-700">Fast nationwide delivery (1-3 business days)</span>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-jify-primary-100 flex items-center justify-center mt-0.5 mr-3">
+                      <svg className="w-3 h-3 text-jify-primary-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <span className="text-gray-700">Marketing support & product training</span>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-jify-primary-100 flex items-center justify-center mt-0.5 mr-3">
+                      <svg className="w-3 h-3 text-jify-primary-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <span className="text-gray-700">Regular new collections & trend updates</span>
+                  </li>
+                </ul>
+                <div className="bg-gray-50 rounded-xl p-6">
+                  <h3 className="font-bold text-gray-900 mb-2">Note:</h3>
+                  <p className="text-gray-600">
+                    Pricing is confidential and shared only with verified business partners. 
+                    Minimum order quantities apply.
+                  </p>
+                </div>
+              </div>
+
+              {/* Right: Form */}
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Get Started</h3>
+                <p className="text-gray-600 mb-8">
+                  Fill out the form below and our partnerships team will contact you within 1 business day.
+                </p>
+                
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="hidden">
+                    <label htmlFor="company">Company</label>
+                    <input
+                      type="text"
+                      id="company"
+                      name="company"
+                      value={formData.company}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-jify-primary-500 focus:border-jify-primary-500"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="businessName" className="block text-sm font-medium text-gray-700 mb-2">
+                      Business Name *
+                    </label>
+                    <input
+                      type="text"
+                      id="businessName"
+                      name="businessName"
+                      value={formData.businessName}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-jify-primary-500 focus:border-jify-primary-500"
+                      placeholder="e.g. Beauty Haven Salon"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="contactPerson" className="block text-sm font-medium text-gray-700 mb-2">
+                      Contact Person *
+                    </label>
+                    <input
+                      type="text"
+                      id="contactPerson"
+                      name="contactPerson"
+                      value={formData.contactPerson}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-jify-primary-500 focus:border-jify-primary-500"
+                      placeholder="Your full name"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                        Email *
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-jify-primary-500 focus:border-jify-primary-500"
+                        placeholder="you@business.com"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                        Phone *
+                      </label>
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-jify-primary-500 focus:border-jify-primary-500"
+                        placeholder="+234 ..."
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="location" className="block text-sm font-medium text-gray-700 mb-2">
+                      Business Location *
+                    </label>
+                    <input
+                      type="text"
+                      id="location"
+                      name="location"
+                      value={formData.location}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-jify-primary-500 focus:border-jify-primary-500"
+                      placeholder="City, State (e.g. Lagos, Lagos)"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                      Tell Us About Your Business
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      rows={4}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-jify-primary-500 focus:border-jify-primary-500"
+                      placeholder="What products are you interested in? Expected monthly volume? Any special requirements?"
+                    ></textarea>
+                  </div>
+
+                  <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                    <h4 className="font-bold text-blue-800 mb-2">How would you like to be contacted?</h4>
+                    <p className="text-blue-700 text-sm mb-3">
+                      We'll send your enquiry details via your preferred channel(s):
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">
+                        <EnvelopeIcon className="w-3 h-3 mr-1" /> Email (Primary)
+                      </span>
+                      <span className="inline-flex items-center px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">
+                        <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                        </svg> WhatsApp
+                      </span>
+                      <span className="inline-flex items-center px-3 py-1 bg-blue-200 text-blue-800 rounded-full text-xs">
+                        <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.278 7.372l-2.434 12.51c-.237 1.219-1.176 1.56-2.219.816l-3.86-3.016-1.792 2.948c-.236.388-.608.562-1.008.468l.276-4.042 6.623-5.827c.34-.298-.098-.458-.522-.106l-7.571 6.309-3.276-.843c-1.173-.302-1.137-1.208.137-1.562l14.27-4.034c1.017-.287 1.838.254 1.465 1.272z" />
+                        </svg> Telegram
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <Button 
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full bg-jify-primary-500 hover:bg-jify-primary-600 py-4 font-semibold"
+                  >
+                    {isSubmitting ? 'Submitting...' : 'Submit Enquiry'}
+                    <ArrowRightIcon className="w-5 h-5 ml-2" />
+                  </Button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}

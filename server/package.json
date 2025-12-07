@@ -7,10 +7,9 @@
     "start": "node dist/server.js",
     "dev": "nodemon src/server.ts",
     "build": "tsc",
-    "prebuild": "npm run clean && npm run build:shared",
-    "build:shared": "cd ../shared && npm install && npm run build",
+    "prebuild": "npm run clean",
     "clean": "rimraf dist",
-    "prestart": "npm run build"
+    "render-build": "npm install && cd ../shared && npm install && npm run build && cd ../server && npm run build"
   },
   "dependencies": {
     "@sendgrid/mail": "^7.7.0",

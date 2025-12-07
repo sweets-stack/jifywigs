@@ -1,16 +1,6 @@
-#!/bin/bash
-# Install server dependencies
+﻿#!/bin/bash
+# Render Build Script
 npm install
-
-# Build shared folder first
-cd ../shared
-npm install
-npm run build
+cd ../shared && npm install && npm run build
 cd ../server
-
-# Build TypeScript
 npm run build
-
-# Verify build output
-echo "Build completed. Checking dist folder:"
-ls -la dist/

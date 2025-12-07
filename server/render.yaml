@@ -3,7 +3,7 @@ services:
     name: jifywigs-api
     runtime: node
     rootDir: .
-    buildCommand: chmod +x render-build.sh && ./render-build.sh
+    buildCommand: npm run render-build
     startCommand: npm start
     envVars:
       - key: NODE_ENV
@@ -24,4 +24,3 @@ services:
         sync: false
       - key: STRIPE_SECRET_KEY
         sync: false
-      # Add any other environment variables you need

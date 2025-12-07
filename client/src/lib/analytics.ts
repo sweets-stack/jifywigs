@@ -28,7 +28,7 @@ export const event = ({ action, category, label, value }: GTagEvent) => {
 };
 
 // eCommerce events
-export const trackViewProduct = (product: { id: string; name: string; price: number }) => {
+export const trackViewProduct = (product: { id: string; name: string; price: number }) => {     
   event({
     action: 'view_item',
     category: 'Ecommerce',
@@ -73,15 +73,12 @@ export const trackAddToCart = (product: { id: string; name: string; price: numbe
   }
 };
 
-// client/src/lib/analytics.ts
-export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID;
-
+// Tracking page specific event
 export const trackViewTrackingPage = (trackingId: string, type: string) => {
   if (typeof window !== 'undefined' && GA_TRACKING_ID) {
     (window as any).gtag('event', 'view_tracking', {
-      tracking_id: trackingId,
-      type,
+      event_category: 'Tracking',
+      event_label: `${type}: ${trackingId}`,
     });
   }
 };
-

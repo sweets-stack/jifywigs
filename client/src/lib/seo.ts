@@ -1,4 +1,4 @@
-// client/src/lib/seo.ts
+﻿// client/src/lib/seo.ts
 import { Metadata } from 'next';
 
 export interface SeoConfig {
@@ -9,7 +9,7 @@ export interface SeoConfig {
 }
 
 export const generateSeo = (config: SeoConfig): Metadata => {
-  const baseUrl = 'https://jifywigs.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://jifywigs.vercel.app';
   const imageUrl = config.image || `${baseUrl}/og-image.jpg`;
 
   return {
@@ -29,7 +29,7 @@ export const generateSeo = (config: SeoConfig): Metadata => {
         },
       ],
       locale: 'en_NG',
-      type: 'website', // ✅ Only 'website' or 'article' allowed
+      type: 'website', // âœ… Only 'website' or 'article' allowed
     },
     twitter: {
       card: 'summary_large_image',

@@ -2,6 +2,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { connectToDatabase } from '@/lib/mongodb';
 import { Product, Review } from '@jifywigs/shared/models';
+import mongoose from 'mongoose';
 
 export async function GET(request: NextRequest, { params }: { params: { slug: string } }) {
   try {
@@ -12,15 +13,21 @@ export async function GET(request: NextRequest, { params }: { params: { slug: st
     const limit = parseInt(url.searchParams.get('limit') || '5');
     const skip = (page - 1) * limit;
 
-    // Get product to verify exists
-    const product = await Product.findOne({ slug: params.slug }).lean();
+    // Get product to verify exists - use explicit typing
+    const product = await Product.findOne({ slug: params.slug }).lean<{
+      _id: mongoose.Types.ObjectId | string;
+    }>();
+    
     if (!product) {
       return NextResponse.json({ error: 'Product not found' }, { status: 404 });
     }
 
+    // Convert to string if it's ObjectId
+    const productId = product._id.toString();
+
     // Fetch approved reviews only
     const reviews = await Review.find({ 
-      productId: product._id, 
+      productId: productId, // Use the string version
       status: 'approved' 
     })
     .sort({ createdAt: -1 })
@@ -30,7 +37,7 @@ export async function GET(request: NextRequest, { params }: { params: { slug: st
     .lean();
 
     const totalReviews = await Review.countDocuments({ 
-      productId: product._id, 
+      productId: productId, // Use the string version here too
       status: 'approved' 
     });
 

@@ -171,18 +171,18 @@ export default function BookingDetailPage() {
   };
 
   const getNextStatus = (currentStatus: BookingStatus): BookingStatus[] => {
-    const statusFlow: Record<BookingStatus, BookingStatus[]> = {
-      [BookingStatus.PENDING]: [BookingStatus.CONFIRMED, BookingStatus.REJECTED],
-      [BookingStatus.CONFIRMED]: [BookingStatus.RECEIVED, BookingStatus.CANCELLED],
-      [BookingStatus.RECEIVED]: [BookingStatus.IN_PROGRESS, BookingStatus.CANCELLED],
-      [BookingStatus.IN_PROGRESS]: [BookingStatus.COMPLETED, BookingStatus.CANCELLED],
-      [BookingStatus.AWAITING_APPROVAL]: [BookingStatus.CONFIRMED, BookingStatus.REJECTED],
-      [BookingStatus.COMPLETED]: [],
-      [BookingStatus.CANCELLED]: [],
-      [BookingStatus.REJECTED]: [],
-    };
-    return statusFlow[currentStatus] || [];
+  const statusFlow: Record<BookingStatus, BookingStatus[]> = {
+    [BookingStatus.PENDING]: [BookingStatus.AWAITING_APPROVAL, BookingStatus.REJECTED], // Changed from CONFIRMED to AWAITING_APPROVAL
+    [BookingStatus.AWAITING_APPROVAL]: [BookingStatus.CONFIRMED, BookingStatus.REJECTED], // Added this
+    [BookingStatus.CONFIRMED]: [BookingStatus.RECEIVED, BookingStatus.CANCELLED],
+    [BookingStatus.RECEIVED]: [BookingStatus.IN_PROGRESS, BookingStatus.CANCELLED],
+    [BookingStatus.IN_PROGRESS]: [BookingStatus.COMPLETED, BookingStatus.CANCELLED],
+    [BookingStatus.COMPLETED]: [],
+    [BookingStatus.CANCELLED]: [],
+    [BookingStatus.REJECTED]: [],
   };
+  return statusFlow[currentStatus] || [];
+};
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);

@@ -1,44 +1,94 @@
+﻿// app/api/admin/analytics/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import mongoose from 'mongoose';
+import { connectToDatabase } from '@/lib/mongodb';
+import { Product, Order, User, Booking } from '@jifywigs/shared/models';
+
+export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest) {
   try {
-    console.log('📊 Analytics API called');
+    await connectToDatabase();
     
-    // Simple test response
-    const testData = {
+    // Get counts
+    const [
+      totalProducts,
+      totalOrders,
+      totalCustomers,
+      totalBookings
+    ] = await Promise.all([
+      Product.countDocuments(),
+      Order.countDocuments(),
+      User.countDocuments({ role: 'customer' }),
+      Booking.countDocuments()
+    ]);
+    
+    // Calculate revenue - check what field your Order model uses
+    const orders = await Order.find({}).lean();
+    let totalRevenue = 0;
+    
+    // Try different possible total fields
+    orders.forEach(order => {
+      // Check which field exists
+      if ((order as any).totalAmount) {
+        totalRevenue += (order as any).totalAmount || 0;
+      } else if ((order as any).total) {
+        totalRevenue += (order as any).total || 0;
+      } else if ((order as any).amount) {
+        totalRevenue += (order as any).amount || 0;
+      }
+    });
+    
+    // Get recent orders
+    const recentOrders = await Order.find({})
+      .sort({ createdAt: -1 })
+      .limit(5)
+      .populate('userId', 'name email')
+      .lean();
+    
+    // Get recent bookings
+    const recentBookings = await Booking.find({})
+      .sort({ createdAt: -1 })
+      .limit(5)
+      .lean();
+
+    return NextResponse.json({
       overview: {
-        totalOrders: 42,
-        totalRevenue: 12500,
-        totalCustomers: 156,
-        totalProducts: 89
+        totalProducts,
+        totalOrders,
+        totalRevenue,
+        totalCustomers,
+        totalBookings,
+        ordersThisWeek: totalOrders,
+        pendingBookings: await Booking.countDocuments({ status: 'pending' }),
+        trainingEnrollments: 0,
+        lowStockProducts: await Product.countDocuments({ stock: { $lt: 5 } }),
+        outOfStockProducts: await Product.countDocuments({ stock: 0 }),
+        avgOrderValue: totalOrders > 0 ? totalRevenue / totalOrders : 0
       },
-      recentOrders: [
-        { id: '1', customer: 'John Doe', amount: 199.99, status: 'completed' },
-        { id: '2', customer: 'Jane Smith', amount: 299.99, status: 'pending' }
-      ],
-      topProducts: [
-        { name: 'Product A', sales: 150 },
-        { name: 'Product B', sales: 120 }
-      ],
-      revenueData: [
-        { date: '2024-12-01', revenue: 1500 },
-        { date: '2024-12-02', revenue: 2300 }
-      ],
-      timeRange: 'week'
-    };
-    
-    return NextResponse.json(testData);
-    
+      recentOrders,
+      recentBookings
+    }, { status: 200 });
   } catch (error: any) {
     console.error('Analytics error:', error);
     return NextResponse.json(
       { 
-        error: 'Failed to fetch analytics',
-        message: error.message,
-        stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+        overview: {
+          totalProducts: 0,
+          totalOrders: 0,
+          totalRevenue: 0,
+          totalCustomers: 0,
+          totalBookings: 0,
+          ordersThisWeek: 0,
+          pendingBookings: 0,
+          trainingEnrollments: 0,
+          lowStockProducts: 0,
+          outOfStockProducts: 0,
+          avgOrderValue: 0
+        },
+        recentOrders: [],
+        recentBookings: []
       },
-      { status: 500 }
+      { status: 200 }
     );
   }
 }

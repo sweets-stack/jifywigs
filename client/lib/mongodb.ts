@@ -1,26 +1,19 @@
-// client/lib/mongodb.ts
-import mongoose from 'mongoose';
+﻿import mongoose from 'mongoose';
+
+declare global {
+  var mongoose: any;
+}
 
 const MONGODB_URI = process.env.MONGODB_URI!;
 
 if (!MONGODB_URI) {
-  throw new Error('Please define the MONGODB_URI environment variable inside .env.local');
+  throw new Error('Please define the MONGODB_URI environment variable');
 }
 
-interface MongooseCache {
-  conn: typeof mongoose | null;
-  promise: Promise<typeof mongoose> | null;
-}
+let cached = global.mongoose;
 
-// Type assertion for global
-const globalWithMongoose = global as typeof globalThis & {
-  mongoose?: MongooseCache;
-};
-
-let cached: MongooseCache = globalWithMongoose.mongoose ?? { conn: null, promise: null };
-
-if (!globalWithMongoose.mongoose) {
-  globalWithMongoose.mongoose = cached;
+if (!cached) {
+  cached = global.mongoose = { conn: null, promise: null };
 }
 
 export async function connectToDatabase() {

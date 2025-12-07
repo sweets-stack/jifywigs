@@ -1,31 +1,49 @@
-import { NextRequest, NextResponse } from 'next/server';
+﻿import { NextRequest, NextResponse } from 'next/server';
+import { connectToDatabase } from '@/lib/mongodb';
+import { Product } from '@jifywigs/shared/models';
 
-const EXPRESS_API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
+export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest) {
   try {
-    const { searchParams } = new URL(request.url);
+    await connectToDatabase();
     
-    // Build query string
-    const queryString = searchParams.toString();
-    const url = `${EXPRESS_API_URL}/products${queryString ? `?${queryString}` : ''}`;
+    const url = new URL(request.url);
+    const page = parseInt(url.searchParams.get('page') || '1');
+    const limit = parseInt(url.searchParams.get('limit') || '20');
+    const skip = (page - 1) * limit;
+    const category = url.searchParams.get('category');
     
-    console.log(`🔄 Proxying request to: ${url}`);
+    const filter: any = {};
+    if (category) filter.category = category;
     
-    const response = await fetch(url, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    const products = await Product.find(filter)
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit)
+      .lean();
     
-    const data = await response.json();
+    const total = await Product.countDocuments(filter);
     
-    return NextResponse.json(data, { status: response.status });
-    
+    return NextResponse.json({
+      products,
+      pagination: {
+        page,
+        limit,
+        total,
+        pages: Math.ceil(total / limit)
+      }
+    }, { status: 200 });
   } catch (error: any) {
-    console.error('❌ Error proxying products request:', error);
-    
-    // Return empty array on error
-    return NextResponse.json([], { status: 200 });
+    console.error('Products error:', error);
+    return NextResponse.json({
+      products: [],
+      pagination: {
+        page: 1,
+        limit: 20,
+        total: 0,
+        pages: 0
+      }
+    }, { status: 200 });
   }
 }

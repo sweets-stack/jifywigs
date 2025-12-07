@@ -1,20 +1,15 @@
-// app/api/admin/create/route.ts
-import { NextRequest, NextResponse } from 'next/server';
+﻿import { NextRequest, NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
-import mongoose from 'mongoose';
-import { User } from '../../../../../shared/models/User';
+import { connectToDatabase } from '@/lib/mongodb';
+import { User } from '@jifywigs/shared/models';
+
+export const dynamic = 'force-dynamic';
 
 export async function POST(request: NextRequest) {
   try {
     console.log('Starting admin creation...');
     
-    // Connect to DB if not already connected
-    if (mongoose.connection.readyState !== 1) {
-      console.log('Connecting to MongoDB...');
-      await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/jifywigs', {
-        dbName: 'jifywigs',
-      });
-    }
+    await connectToDatabase();
     
     const body = await request.json();
     console.log('Request body received:', body);
@@ -67,7 +62,6 @@ export async function POST(request: NextRequest) {
         success: false,
         message: 'Failed to create admin',
         error: error.message,
-        details: error.toString()
       },
       { status: 500 }
     );

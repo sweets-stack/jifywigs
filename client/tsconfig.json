@@ -20,7 +20,7 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@jifywigs/shared/*": ["../shared/*"],
+      "@jifywigs/shared/*": ["../shared/dist/*"],
       "@/contexts/*": ["./contexts/*"]
     },
     "typeRoots": ["./types", "./node_modules/@types"]

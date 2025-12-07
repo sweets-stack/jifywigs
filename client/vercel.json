@@ -1,8 +1,6 @@
 {
   "buildCommand": "npm run build",
-  "devCommand": "npm run dev",
+  "outputDirectory": "client/.next",
   "installCommand": "npm install",
-  "framework": "nextjs",
-  "outputDirectory": ".next",
-  "regions": ["fra1"]
+  "framework": "nextjs"
 }

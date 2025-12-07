@@ -17,6 +17,7 @@
     "deploy:server": "cd server && npm run build",
     "test": "echo \"No tests yet\" && exit 0"
   },
+  
   "devDependencies": {
     "rimraf": "^5.0.5",
     "turbo": "^1.13.3"

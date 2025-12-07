@@ -45,11 +45,13 @@ export enum CertificateStatus {
 
 export enum BookingStatus {
   PENDING = 'pending',
+  AWAITING_APPROVAL = 'awaiting_approval', // Add this
   CONFIRMED = 'confirmed',
   RECEIVED = 'received',
   IN_PROGRESS = 'in_progress',
   COMPLETED = 'completed',
-  CANCELLED = 'cancelled'
+  CANCELLED = 'cancelled',
+  REJECTED = 'rejected', // Add this
 }
 
 export enum ProductStatus {

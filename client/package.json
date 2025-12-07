@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3005",
-    "build": "npm run build:shared && next build",
+    "build": "cd ../shared && npm ci --production && npm run build && cd ../client && next build",
     "build:shared": "cd ../shared && npm install && npm run build",
     "start": "next start",
     "lint": "next lint"

@@ -1,6 +1,5 @@
-// server/src/types/express.d.ts
+// server/src/types/custom.d.ts
 import { UserRole } from '@jifywigs/shared';
-import express from 'express';
 
 declare global {
   namespace Express {
@@ -13,5 +12,5 @@ declare global {
   }
 }
 
-// Export nothing since it's a declaration file
+// This file doesn't need exports
 export {};

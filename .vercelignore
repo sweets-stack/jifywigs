@@ -1,0 +1,11 @@
+server/
+shared/
+docs/
+scripts/
+render.yaml
+render-build.sh
+*.md
+.gitignore
+turbo.json
+project_summary.json
+introspect.py

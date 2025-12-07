@@ -1,386 +1,439 @@
-==========================================
-Project Structure Tree
-Root: C:\Users\jepha\Documents\jifywigs
-Excluding: node_modules, .next, .git, etc.
-==========================================
-
-📁 jifywigs
-├── 📁 client
-    ├── 📁 app
-    │   ├── 📁 (auth)
-    │   │   ├── 📁 forgot-password
-    │   │   │   └── 📄 page.tsx (6.83 KB)
-    │   │   ├── 📁 login
-    │   │   │   └── 📄 page.tsx (8.74 KB)
-    │   │   ├── 📁 register
-    │   │   │   └── 📄 page.tsx (14.04 KB)
-    │   │   └── 📄 layout.tsx (325 B)
-    │   ├── 📁 (marketing)
-    │   │   ├── 📁 about
-    │   │   │   └── 📄 page.tsx (10.3 KB)
-    │   │   ├── 📁 blog
-    │   │   │   ├── 📁 [slug]
-    │   │   │   └── 📄 page.tsx (2.21 KB)
-    │   │   ├── 📁 contact
-    │   │   │   └── 📄 page.tsx (20.03 KB)
-    │   │   ├── 📁 faq
-    │   │   │   └── 📄 page.tsx (2.73 KB)
-    │   │   ├── 📄 layout.tsx (223 B)
-    │   │   └── 📄 page.tsx (33.83 KB)
-    │   ├── 📁 admin
-    │   │   ├── 📁 analytics
-    │   │   │   └── 📄 page.tsx (3.75 KB)
-    │   │   ├── 📁 bookings
-    │   │   │   ├── 📁 [id]
-    │   │   │   └── 📄 page.tsx (4.27 KB)
-    │   │   ├── 📁 customers
-    │   │   │   └── 📄 page.tsx (4.04 KB)
-    │   │   ├── 📁 orders
-    │   │   │   ├── 📁 [id]
-    │   │   │   └── 📄 page.tsx (4.66 KB)
-    │   │   ├── 📁 products
-    │   │   │   ├── 📁 [id]
-    │   │   │   └── 📄 page.tsx (35.2 KB)
-    │   │   ├── 📁 settings
-    │   │   │   └── 📄 page.tsx (3.96 KB)
-    │   │   ├── 📁 training
-    │   │   │   ├── 📁 [id]
-    │   │   │   └── 📄 page.tsx (2.43 KB)
-    │   │   ├── 📁 wholesale
-    │   │   │   ├── 📁 [id]
-    │   │   │   ├── 📁 applications
-    │   │   │   │   └── 📄 page.tsx (3.03 KB)
-    │   │   │   └── 📄 page.tsx (0 B)
-    │   │   ├── 📄 layout.tsx (1.34 KB)
-    │   │   └── 📄 page.tsx (9.01 KB)
-    │   ├── 📁 api
-    │   │   ├── 📁 auth
-    │   │   │   ├── 📁 login
-    │   │   │   │   └── 📄 route.ts (687 B)
-    │   │   │   └── 📁 register
-    │   │   │   │   └── 📄 route.ts (1006 B)
-    │   │   ├── 📁 cart
-    │   │   │   └── 📄 route.ts (2.12 KB)
-    │   │   ├── 📁 contact
-    │   │   │   └── 📄 route.ts (4.3 KB)
-    │   │   ├── 📁 products
-    │   │   │   └── 📁 slug
-    │   │   │   │   └── 📁 [slug]
-    │   │   ├── 📁 reviews
-    │   │   │   └── 📄 route.ts (3.3 KB)
-    │   │   ├── 📁 services
-    │   │   │   └── 📁 book
-    │   │   │   │   └── 📄 route.ts (6.98 KB)
-    │   │   ├── 📁 wholesale
-    │   │   │   └── 📄 route.ts (641 B)
-    │   │   └── 📁 wishlist
-    │   │   │   └── 📄 route.ts (1.92 KB)
-    │   ├── 📁 cart
-    │   │   └── 📄 page.tsx (7.63 KB)
-    │   ├── 📁 checkout
-    │   │   └── 📄 page.tsx (36.42 KB)
-    │   ├── 📁 dashboard
-    │   │   ├── 📁 orders
-    │   │   │   └── 📄 page.tsx (2.72 KB)
-    │   │   ├── 📁 profile
-    │   │   │   └── 📄 page.tsx (2.92 KB)
-    │   │   ├── 📁 services
-    │   │   │   └── 📄 page.tsx (2.71 KB)
-    │   │   ├── 📁 training
-    │   │   │   └── 📄 page.tsx (0 B)
-    │   │   ├── 📁 wishlist
-    │   │   │   └── 📄 page.tsx (2.37 KB)
-    │   │   ├── 📄 layout.tsx (1.49 KB)
-    │   │   └── 📄 page.tsx (2.38 KB)
-    │   ├── 📁 product
-    │   │   └── 📁 [slug]
-    │   ├── 📁 reviews
-    │   │   └── 📄 page.tsx (12.73 KB)
-    │   ├── 📁 services
-    │   │   ├── 📁 [id]
-    │   │   ├── 📁 book
-    │   │   │   └── 📄 page.tsx (17.28 KB)
-    │   │   └── 📄 page.tsx (14.6 KB)
-    │   ├── 📁 shop
-    │   │   ├── 📁 [category]
-    │   │   └── 📄 page.tsx (20.34 KB)
-    │   ├── 📁 track
-    │   │   └── 📁 [trackingId]
-    │   ├── 📁 training
-    │   │   ├── 📁 [slug]
-    │   │   ├── 📁 enroll
-    │   │   │   └── 📄 page.tsx (0 B)
-    │   │   └── 📄 page.tsx (2.38 KB)
-    │   ├── 📁 wholesale
-    │   │   └── 📄 page.tsx (25.2 KB)
-    │   ├── 📄 error.tsx (1.52 KB)
-    │   ├── 📄 globals.css (1.98 KB)
-    │   ├── 📄 layout.tsx (1.59 KB)
-    │   ├── 📄 loading.tsx (401 B)
-    │   └── 📄 not-found.tsx (1.15 KB)
-    ├── 📁 contexts
-    │   ├── 📄 AuthContext.tsx (6.65 KB)
-    │   └── 📄 CartContext.tsx (746 B)
-    ├── 📁 lib
-    │   └── 📄 auth.ts (0 B)
-    ├── 📁 public
-    │   ├── 📁 icons
-    │   ├── 📁 images
-    │   │   ├── 📁 banners
-    │   │   ├── 📁 placeholders
-    │   │   │   └── 📄 wig1.jpg (0 B)
-    │   │   ├── 📄 category-accessories.jpg (100.61 KB)
-    │   │   ├── 📄 category-bone-straight.jpg (119.98 KB)
-    │   │   ├── 📄 category-closure.jpeg (176.25 KB)
-    │   │   ├── 📄 category-colored.jpg (120.96 KB)
-    │   │   ├── 📄 category-curly.jpg (115.4 KB)
-    │   │   ├── 📄 category-frontal.jpg (107.58 KB)
-    │   │   ├── 📄 download (80).jpeg (113.69 KB)
-    │   │   ├── 📄 download (81).jpeg (61.68 KB)
-    │   │   ├── 📄 footer-background.jpg (70.86 KB)
-    │   │   ├── 📄 From tired to stunning! 😍✨ __Swipe to see how a little TLC can transform your wig_ __Ready to bring your old wig back to life_ Let’s make it pop again! 💖.jpeg (85.69 KB)
-    │   │   ├── 📄 hero1.jpg (765 B)
-    │   │   ├── 📄 hero-bone-straight.jpg (53.98 KB)
-    │   │   ├── 📄 hero-curly-wigs.jpeg (45.11 KB)
-    │   │   ├── 📄 hero-wig-revamp.jpg (61.38 KB)
-    │   │   ├── 📄 logo.svg (211 B)
-    │   │   ├── 📄 product-1.jpg (109.74 KB)
-    │   │   ├── 📄 product-2.jpg (73.3 KB)
-    │   │   ├── 📄 product-3.jpg (95.6 KB)
-    │   │   ├── 📄 product-4.jpg (57.39 KB)
-    │   │   └── 📄 wig1.jpg (59.74 KB)
-    │   └── 📄 favicon.ico (0 B)
-    ├── 📁 src
-    │   ├── 📁 components
-    │   │   ├── 📁 admin
-    │   │   │   ├── 📄 BookingTimeline.tsx (1.97 KB)
-    │   │   │   ├── 📄 DataTable.tsx (1.36 KB)
-    │   │   │   ├── 📄 StatCard.tsx (1.97 KB)
-    │   │   │   ├── 📄 TrainingManager.tsx (3.61 KB)
-    │   │   │   └── 📄 WholesaleDashboard.tsx (3.5 KB)
-    │   │   ├── 📁 checkout
-    │   │   │   ├── 📄 AddressForm.tsx (5.23 KB)
-    │   │   │   ├── 📄 CheckoutSteps.tsx (2.33 KB)
-    │   │   │   ├── 📄 PaymentMethod.tsx (3.36 KB)
-    │   │   │   └── 📄 PaystackButton.tsx (1.97 KB)
-    │   │   ├── 📁 layout
-    │   │   │   ├── 📄 AdminSidebar.tsx (4.47 KB)
-    │   │   │   ├── 📄 DashboardNav.tsx (1.62 KB)
-    │   │   │   ├── 📄 Footer.tsx (10.65 KB)
-    │   │   │   └── 📄 Header.tsx (18.28 KB)
-    │   │   ├── 📁 marketing
-    │   │   │   ├── 📄 NewsletterSignup.tsx (4.75 KB)
-    │   │   │   ├── 📄 SeoMeta.tsx (2.24 KB)
-    │   │   │   ├── 📄 SocialLinks.tsx (7.67 KB)
-    │   │   │   ├── 📄 TestimonialCard.tsx (1.51 KB)
-    │   │   │   └── 📄 TrustBadge.tsx (659 B)
-    │   │   ├── 📁 reviews
-    │   │   │   └── 📄 ReviewCard.tsx (3.22 KB)
-    │   │   ├── 📁 services
-    │   │   │   ├── 📄 BookingForm.tsx (6.99 KB)
-    │   │   │   ├── 📄 ProgressTracker.tsx (2.67 KB)
-    │   │   │   └── 📄 ServiceCard.tsx (3.75 KB)
-    │   │   ├── 📁 shop
-    │   │   │   ├── 📄 CategoryCard.tsx (2.6 KB)
-    │   │   │   ├── 📄 FilterBar.tsx (6.26 KB)
-    │   │   │   ├── 📄 ProductCard.tsx (9.21 KB)
-    │   │   │   └── 📄 ProductGallery.tsx (2.28 KB)
-    │   │   ├── 📁 training
-    │   │   │   ├── 📄 CertificateBadge.tsx (0 B)
-    │   │   │   ├── 📄 CourseOutline.tsx (0 B)
-    │   │   │   └── 📄 TrainingCard.tsx (1.94 KB)
-    │   │   ├── 📁 ui
-    │   │   │   ├── 📄 Badge.tsx (1.08 KB)
-    │   │   │   ├── 📄 Button.tsx (1.84 KB)
-    │   │   │   ├── 📄 Card.tsx (1.1 KB)
-    │   │   │   ├── 📄 Input.tsx (524 B)
-    │   │   │   ├── 📄 Modal.tsx (1.91 KB)
-    │   │   │   ├── 📄 Rating.tsx (1.22 KB)
-    │   │   │   └── 📄 Select.tsx (1.04 KB)
-    │   │   └── 📁 wholesale
-    │   │   │   ├── 📄 BulkOrderCalculator.tsx (0 B)
-    │   │   │   ├── 📄 WholesaleApplication.tsx (5.92 KB)
-    │   │   │   └── 📄 WholesalePricing.tsx (0 B)
-    │   ├── 📁 hooks
-    │   │   ├── 📄 useBooking.ts (423 B)
-    │   │   ├── 📄 useCart.ts (1.77 KB)
-    │   │   ├── 📄 useGAEvent.ts (0 B)
-    │   │   ├── 📄 useGeoLocation.ts (630 B)
-    │   │   └── 📄 useWishlist.ts (926 B)
-    │   ├── 📁 lib
-    │   │   ├── 📁 mockData
-    │   │   │   ├── 📄 bookings.ts (410 B)
-    │   │   │   ├── 📄 index.ts (166 B)
-    │   │   │   ├── 📄 orders.ts (594 B)
-    │   │   │   ├── 📄 products.ts (567 B)
-    │   │   │   ├── 📄 services.ts (479 B)
-    │   │   │   ├── 📄 training.ts (504 B)
-    │   │   │   └── 📄 wholesale.ts (184 B)
-    │   │   ├── 📄 analytics.ts (2.25 KB)
-    │   │   ├── 📄 api.ts (598 B)
-    │   │   ├── 📄 auth.ts (438 B)
-    │   │   ├── 📄 auth-google.ts (1.25 KB)
-    │   │   ├── 📄 cloudinary.ts (223 B)
-    │   │   ├── 📄 formatters.ts (330 B)
-    │   │   ├── 📄 mockData.ts (814 B)
-    │   │   ├── 📄 seo.ts (988 B)
-    │   │   └── 📄 validators.ts (296 B)
-    │   └── 📁 types
-    │   │   ├── 📄 admin.ts (141 B)
-    │   │   ├── 📄 booking.ts (0 B)
-    │   │   ├── 📄 order.ts (528 B)
-    │   │   ├── 📄 product.ts (519 B)
-    │   │   ├── 📄 service.ts (527 B)
-    │   │   ├── 📄 training.ts (269 B)
-    │   │   ├── 📄 user.ts (187 B)
-    │   │   └── 📄 wholesale.ts (0 B)
-    ├── 📁 styles
-    │   └── 📄 globals.css (725 B)
-    ├── 📁 types
-    │   ├── 📄 admin.ts (171 B)
-    │   ├── 📄 booking.ts (420 B)
-    │   ├── 📄 order.ts (601 B)
-    │   ├── 📄 products.ts (569 B)
-    │   ├── 📄 react.d.ts (226 B)
-    │   ├── 📄 service.ts (206 B)
-    │   └── 📄 user.ts (220 B)
-    ├── 📁 utils
-    │   └── 📄 formatters.ts (731 B)
-    ├── 📄 .env.local (148 B)
-    ├── 📄 middleware.ts (1.23 KB)
-    ├── 📄 next.config.js (283 B)
-    ├── 📄 next-env.d.ts (206 B)
-    ├── 📄 package.json (1.37 KB)
-    ├── 📄 postcss.config.js (87 B)
-    ├── 📄 tailwind.config.ts (1.8 KB)
-    └── 📄 tsconfig.json (736 B)
-├── 📁 docs
-    ├── 📄 API.md (0 B)
-    ├── 📄 PAYMENT_SETUP.md (0 B)
-    ├── 📄 SETUP.md (0 B)
-    └── 📄 WHOLESALE_GUIDE.md (0 B)
-├── 📁 scripts
-    └── 📄 migrate.ts (0 B)
-├── 📁 server
-    ├── 📁 scripts
-    │   ├── 📄 generate-sitemap.ts (0 B)
-    │   └── 📄 seed.ts (24.63 KB)
-    ├── 📁 src
-    │   ├── 📁 config
-    │   │   ├── 📄 cloudinary.ts (280 B)
-    │   │   ├── 📄 database.ts (397 B)
-    │   │   ├── 📄 ga4.ts (0 B)
-    │   │   ├── 📄 jwt.ts (554 B)
-    │   │   └── 📄 payment.ts (0 B)
-    │   ├── 📁 controllers
-    │   │   ├── 📄 admin.controller.ts (1 KB)
-    │   │   ├── 📄 auth.controller.ts (12.1 KB)
-    │   │   ├── 📄 booking.controller.ts (1.21 KB)
-    │   │   ├── 📄 marketing.controller.ts (0 B)
-    │   │   ├── 📄 order.controller.ts (1.64 KB)
-    │   │   ├── 📄 product.controller.ts (1.14 KB)
-    │   │   ├── 📄 reviewController.ts (4.54 KB)
-    │   │   ├── 📄 service.controller.ts (396 B)
-    │   │   ├── 📄 tracking.controller.ts (2.01 KB)
-    │   │   ├── 📄 training.controller.ts (0 B)
-    │   │   ├── 📄 user.controller.ts (0 B)
-    │   │   ├── 📄 webhook.controller.ts (1.87 KB)
-    │   │   └── 📄 wholesale.controller.ts (2.25 KB)
-    │   ├── 📁 lib
-    │   │   └── 📄 api.ts (318 B)
-    │   ├── 📁 middleware
-    │   │   ├── 📄 analytics.middleware.ts (0 B)
-    │   │   ├── 📄 auth.middleware.ts (2.84 KB)
-    │   │   ├── 📄 geo.middleware.ts (0 B)
-    │   │   ├── 📄 role.middleware.ts (0 B)
-    │   │   └── 📄 upload.middleware.ts (162 B)
-    │   ├── 📁 models
-    │   │   ├── 📄 index.ts (299 B)
-    │   │   ├── 📄 Product.ts (1.67 KB)
-    │   │   └── 📄 Review.ts (2.17 KB)
-    │   ├── 📁 routes
-    │   │   ├── 📄 admin.routes.ts (566 B)
-    │   │   ├── 📄 auth.routes.ts (660 B)
-    │   │   ├── 📄 book.ts (2.18 KB)
-    │   │   ├── 📄 marketing.routes.ts (0 B)
-    │   │   ├── 📄 order.routes.ts (437 B)
-    │   │   ├── 📄 products.ts (1.59 KB)
-    │   │   ├── 📄 service.routes.ts (226 B)
-    │   │   ├── 📄 tracking.routes.ts (239 B)
-    │   │   ├── 📄 training.routes.ts (0 B)
-    │   │   ├── 📄 user.routes.ts (0 B)
-    │   │   ├── 📄 webhook.routes.ts (435 B)
-    │   │   └── 📄 wholesale.ts (2.18 KB)
-    │   ├── 📁 schemas
-    │   │   ├── 📄 Admin.ts (346 B)
-    │   │   ├── 📄 Booking.ts (1.11 KB)
-    │   │   ├── 📄 Category.ts (0 B)
-    │   │   ├── 📄 Certificate.ts (0 B)
-    │   │   ├── 📄 Order.ts (1.42 KB)
-    │   │   ├── 📄 Product.ts (1.34 KB)
-    │   │   ├── 📄 Review.ts (0 B)
-    │   │   ├── 📄 Service.ts (551 B)
-    │   │   ├── 📄 Subscriber.ts (630 B)
-    │   │   ├── 📄 Training.ts (0 B)
-    │   │   ├── 📄 User.ts (1.69 KB)
-    │   │   ├── 📄 Wholesale.ts (0 B)
-    │   │   └── 📄 WholesaleApplication.ts (0 B)
-    │   ├── 📁 services
-    │   │   ├── 📄 AdminService.ts (6.03 KB)
-    │   │   ├── 📄 BookingService.ts (0 B)
-    │   │   ├── 📄 EmailService.ts (1.92 KB)
-    │   │   ├── 📄 NotificationService.ts (0 B)
-    │   │   ├── 📄 PaymentService.ts (899 B)
-    │   │   ├── 📄 ProductService.ts (682 B)
-    │   │   ├── 📄 SeoService.ts (2.47 KB)
-    │   │   ├── 📄 TrainingService.ts (0 B)
-    │   │   └── 📄 WholesaleService.ts (0 B)
-    │   ├── 📁 types
-    │   │   ├── 📁 express
-    │   │   │   └── 📄 index.d.ts (308 B)
-    │   │   ├── 📄 express.d.ts (233 B)
-    │   │   ├── 📄 nodemailer.d.ts (88 B)
-    │   │   └── 📄 pdfkit.d.ts (86 B)
-    │   ├── 📁 utils
-    │   │   ├── 📄 email.ts (586 B)
-    │   │   ├── 📄 ga4.ts (0 B)
-    │   │   ├── 📄 geo.ts (373 B)
-    │   │   ├── 📄 pdf.ts (1.83 KB)
-    │   │   └── 📄 sms.ts (281 B)
-    │   ├── 📄 app.ts (1.25 KB)
-    │   ├── 📄 server.ts (2.61 KB)
-    │   └── 📄 test-auth.ts (1.04 KB)
-    ├── 📄 .env (591 B)
-    ├── 📄 .env.example (616 B)
-    ├── 📄 backup-package.json.txt (0 B)
-    ├── 📄 nodemon.json (138 B)
-    ├── 📄 package.json (1.91 KB)
-    ├── 📄 test-jwt.ts (576 B)
-    └── 📄 tsconfig.json (708 B)
-├── 📁 shared
-    ├── 📁 types
-    │   ├── 📄 marketing.ts (278 B)
-    │   ├── 📄 payment.ts (570 B)
-    │   ├── 📄 training.ts (1.36 KB)
-    │   ├── 📄 users.ts (232 B)
-    │   └── 📄 wholesale.ts (647 B)
-    ├── 📄 enums.ts (1.05 KB)
-    ├── 📄 index.ts (49 B)
-    ├── 📄 package.json (99 B)
-    └── 📄 types.ts (1008 B)
-├── 📄 .gitignore (461 B)
-├── 📄 introspect.py (45.01 KB)
-├── 📄 package.json (1.09 KB)
-├── 📄 package-lock.json (484.62 KB)
-├── 📄 PROJECT_GUIDE.md (5.02 KB)
-├── 📄 project_summary.json (6.07 KB)
-├── 📄 README.md (672 B)
-└── 📄 turbo.json (372 B)
-
-==========================================
-Legend:
-  📁  Directory
-  📄  File (with size)
-  Colors indicate file types
-==========================================
+📁 Project Structure
+===================
+├── 📁 jifywigs/
+    ├── 📁 server/
+    │   ├── 📁 src/
+    │   │   ├── 📁 schemas/
+    │   │   │   ├── 📄 Training.ts
+    │   │   │   ├── 📄 Subscriber.ts
+    │   │   │   ├── 📄 Service.ts
+    │   │   │   ├── 📄 WholesaleApplication.ts
+    │   │   │   ├── 📄 Wholesale.ts
+    │   │   │   ├── 📄 User.ts
+    │   │   │   ├── 📄 Review.ts
+    │   │   │   ├── 📄 Category.ts
+    │   │   │   ├── 📄 Booking.ts
+    │   │   │   ├── 📄 Admin.ts
+    │   │   │   ├── 📄 Product.ts
+    │   │   │   ├── 📄 Order.ts
+    │   │   │   ├── 📄 Certificate.ts
+    │   │   ├── 📁 routes/
+    │   │   │   ├── 📄 training.routes.ts
+    │   │   │   ├── 📄 tracking.routes.ts
+    │   │   │   ├── 📄 service.routes.ts
+    │   │   │   ├── 📄 wholesale.ts
+    │   │   │   ├── 📄 webhook.routes.ts
+    │   │   │   ├── 📄 user.routes.ts
+    │   │   │   ├── 📄 book.ts
+    │   │   │   ├── 📄 auth.routes.ts
+    │   │   │   ├── 📄 admin.routes.ts
+    │   │   │   ├── 📄 products.ts
+    │   │   │   ├── 📄 order.routes.ts
+    │   │   │   ├── 📄 marketing.routes.ts
+    │   │   ├── 📁 services/
+    │   │   │   ├── 📄 SeoService.ts
+    │   │   │   ├── 📄 ProductService.ts
+    │   │   │   ├── 📄 WholesaleService.ts
+    │   │   │   ├── 📄 TrainingService.ts
+    │   │   │   ├── 📄 PaymentService.ts
+    │   │   │   ├── 📄 BookingService.ts
+    │   │   │   ├── 📄 AdminService.ts
+    │   │   │   ├── 📄 NotificationService.ts
+    │   │   │   ├── 📄 EmailService.ts
+    │   │   ├── 📁 utils/
+    │   │   │   ├── 📄 pdf.ts
+    │   │   │   ├── 📄 sms.ts
+    │   │   │   ├── 📄 geo.ts
+    │   │   │   ├── 📄 email.ts
+    │   │   │   ├── 📄 ga4.ts
+    │   │   ├── 📁 types/
+    │   │   │   ├── 📁 express/
+    │   │   │   │   ├── 📄 index.d.ts
+    │   │   │   ├── 📄 pdfkit.d.ts
+    │   │   │   ├── 📄 nodemailer.d.ts
+    │   │   │   ├── 📄 express.d.ts
+    │   │   ├── 📁 controllers/
+    │   │   │   ├── 📄 training.controller.ts
+    │   │   │   ├── 📄 tracking.controller.ts
+    │   │   │   ├── 📄 service.controller.ts
+    │   │   │   ├── 📄 wholesale.controller.ts
+    │   │   │   ├── 📄 webhook.controller.ts
+    │   │   │   ├── 📄 user.controller.ts
+    │   │   │   ├── 📄 reviewController.ts
+    │   │   │   ├── 📄 booking.controller.ts
+    │   │   │   ├── 📄 auth.controller.ts
+    │   │   │   ├── 📄 admin.controller.ts
+    │   │   │   ├── 📄 product.controller.ts
+    │   │   │   ├── 📄 order.controller.ts
+    │   │   │   ├── 📄 marketing.controller.ts
+    │   │   ├── 📁 config/
+    │   │   │   ├── 📄 jwt.ts
+    │   │   │   ├── 📄 payment.ts
+    │   │   │   ├── 📄 ga4.ts
+    │   │   │   ├── 📄 cloudinary.ts
+    │   │   │   ├── 📄 database.ts
+    │   │   ├── 📁 lib/
+    │   │   │   ├── 📄 mongodb.ts
+    │   │   │   ├── 📄 api.ts
+    │   │   ├── 📁 models/
+    │   │   │   ├── 📄 Review.ts
+    │   │   │   ├── 📄 Product.ts
+    │   │   │   ├── 📄 index.ts
+    │   │   ├── 📁 middleware/
+    │   │   │   ├── 📄 role.middleware.ts
+    │   │   │   ├── 📄 upload.middleware.ts
+    │   │   │   ├── 📄 geo.middleware.ts
+    │   │   │   ├── 📄 analytics.middleware.ts
+    │   │   │   ├── 📄 auth.middleware.ts
+    │   │   ├── 📄 test-auth.ts
+    │   │   ├── 📄 server.ts
+    │   │   ├── 📄 app.ts
+    │   ├── 📁 scripts/
+    │   │   ├── 📄 init-database.js
+    │   │   ├── 📄 seed.ts
+    │   │   ├── 📄 clean-database.js
+    │   │   ├── 📄 generate-sitemap.ts
+    │   ├── 📄 render.yaml
+    │   ├── 📄 render-build.sh
+    │   ├── 📄 tsconfig.json
+    │   ├── 📄 test-jwt.ts
+    │   ├── 📄 build.js
+    │   ├── 📄 backup-package.json.txt
+    │   ├── 📄 package.json
+    │   ├── 📄 nodemon.json
+    ├── 📁 shared/
+    │   ├── 📁 types/
+    │   │   ├── 📄 users.ts
+    │   │   ├── 📄 wholesale.ts
+    │   │   ├── 📄 training.ts
+    │   │   ├── 📄 marketing.ts
+    │   │   ├── 📄 payment.ts
+    │   ├── 📁 models/
+    │   │   ├── 📄 Training.ts
+    │   │   ├── 📄 Service.ts
+    │   │   ├── 📄 Review.ts
+    │   │   ├── 📄 wishlist.ts
+    │   │   ├── 📄 Wholesale.ts
+    │   │   ├── 📄 User.ts
+    │   │   ├── 📄 Cart.ts
+    │   │   ├── 📄 Booking.ts
+    │   │   ├── 📄 Analytics.ts
+    │   │   ├── 📄 Product.ts
+    │   │   ├── 📄 Order.ts
+    │   │   ├── 📄 index.ts
+    │   ├── 📄 package.json
+    │   ├── 📄 types.ts
+    │   ├── 📄 enums.ts
+    │   ├── 📄 index.ts
+    ├── 📁 scripts/
+    │   ├── 📄 migrate.ts
+    ├── 📁 client/
+    │   ├── 📁 styles/
+    │   │   ├── 📄 globals.css
+    │   ├── 📁 src/
+    │   │   ├── 📁 lib/
+    │   │   │   ├── 📁 mockData/
+    │   │   │   │   ├── 📄 services.ts
+    │   │   │   │   ├── 📄 training.ts
+    │   │   │   │   ├── 📄 wholesale.ts
+    │   │   │   │   ├── 📄 products.ts
+    │   │   │   │   ├── 📄 bookings.ts
+    │   │   │   │   ├── 📄 index.ts
+    │   │   │   │   ├── 📄 orders.ts
+    │   │   │   ├── 📄 mockData.ts
+    │   │   │   ├── 📄 formatters.ts
+    │   │   │   ├── 📄 mongodb.ts
+    │   │   │   ├── 📄 validators.ts
+    │   │   │   ├── 📄 seo.ts
+    │   │   │   ├── 📄 api.ts
+    │   │   │   ├── 📄 analytics.ts
+    │   │   │   ├── 📄 auth-google.ts
+    │   │   │   ├── 📄 cloudinary.ts
+    │   │   │   ├── 📄 auth.ts
+    │   │   ├── 📁 types/
+    │   │   │   ├── 📄 training.ts
+    │   │   │   ├── 📄 service.ts
+    │   │   │   ├── 📄 wholesale.ts
+    │   │   │   ├── 📄 user.ts
+    │   │   │   ├── 📄 booking.ts
+    │   │   │   ├── 📄 admin.ts
+    │   │   │   ├── 📄 product.ts
+    │   │   │   ├── 📄 order.ts
+    │   │   ├── 📁 components/
+    │   │   │   ├── 📁 shop/
+    │   │   │   │   ├── 📄 MobileFilters.tsx
+    │   │   │   │   ├── 📄 ProductCard.tsx
+    │   │   │   │   ├── 📄 ProductGallery.tsx
+    │   │   │   │   ├── 📄 CategoryCard.tsx
+    │   │   │   │   ├── 📄 FilterBar.tsx
+    │   │   │   │   ├── 📄 FilterSidebar.tsx
+    │   │   │   ├── 📁 services/
+    │   │   │   │   ├── 📄 ServiceCard.tsx
+    │   │   │   │   ├── 📄 ProgressTracker.tsx
+    │   │   │   │   ├── 📄 BookingForm.tsx
+    │   │   │   ├── 📁 training/
+    │   │   │   │   ├── 📄 TrainingCard.tsx
+    │   │   │   │   ├── 📄 CourseOutline.tsx
+    │   │   │   │   ├── 📄 CertificateBadge.tsx
+    │   │   │   ├── 📁 wholesale/
+    │   │   │   │   ├── 📄 WholesalePricing.tsx
+    │   │   │   │   ├── 📄 WholesaleApplication.tsx
+    │   │   │   │   ├── 📄 BulkOrderCalculator.tsx
+    │   │   │   ├── 📁 ui/
+    │   │   │   │   ├── 📄 Select.tsx
+    │   │   │   │   ├── 📄 Rating.tsx
+    │   │   │   │   ├── 📄 Tabs.tsx
+    │   │   │   │   ├── 📄 Switch.tsx
+    │   │   │   │   ├── 📄 Modal.tsx
+    │   │   │   │   ├── 📄 Button.tsx
+    │   │   │   │   ├── 📄 Badge.tsx
+    │   │   │   │   ├── 📄 Input.tsx
+    │   │   │   │   ├── 📄 Card.tsx
+    │   │   │   ├── 📁 reviews/
+    │   │   │   │   ├── 📄 ReviewCard.tsx
+    │   │   │   ├── 📁 checkout/
+    │   │   │   │   ├── 📄 PaymentMethod.tsx
+    │   │   │   │   ├── 📄 PaystackButton.tsx
+    │   │   │   │   ├── 📄 AddressForm.tsx
+    │   │   │   │   ├── 📄 CheckoutSteps.tsx
+    │   │   │   ├── 📁 admin/
+    │   │   │   │   ├── 📄 StatCard.tsx
+    │   │   │   │   ├── 📄 TrainingManager.tsx
+    │   │   │   │   ├── 📄 WholesaleDashboard.tsx
+    │   │   │   │   ├── 📄 BookingTimeline.tsx
+    │   │   │   │   ├── 📄 DataTable.tsx
+    │   │   │   │   ├── 📄 MobileSidebar.tsx
+    │   │   │   ├── 📁 debug/
+    │   │   │   │   ├── 📄 UserDebug.tsx
+    │   │   │   ├── 📁 marketing/
+    │   │   │   │   ├── 📄 TestimonialCard.tsx
+    │   │   │   │   ├── 📄 TrustBadge.tsx
+    │   │   │   │   ├── 📄 SocialLinks.tsx
+    │   │   │   │   ├── 📄 NewsletterSignup.tsx
+    │   │   │   │   ├── 📄 SeoMeta.tsx
+    │   │   │   ├── 📁 layout/
+    │   │   │       ├── 📄 Header.tsx
+    │   │   │       ├── 📄 Header.tsx.bak
+    │   │   │       ├── 📄 Footer.tsx
+    │   │   │       ├── 📄 AdminSidebar.tsx
+    │   │   │       ├── 📄 DashboardNav.tsx
+    │   │   ├── 📁 hooks/
+    │   │       ├── 📄 useGeoLocation.ts
+    │   │       ├── 📄 useWishlist.ts
+    │   │       ├── 📄 useGAEvent.ts
+    │   │       ├── 📄 useBooking.ts
+    │   │       ├── 📄 useCart.ts
+    │   ├── 📁 utils/
+    │   │   ├── 📄 formatters.ts
+    │   ├── 📁 types/
+    │   │   ├── 📄 react.d.ts
+    │   │   ├── 📄 service.ts
+    │   │   ├── 📄 user.ts
+    │   │   ├── 📄 products.ts
+    │   │   ├── 📄 admin.ts
+    │   │   ├── 📄 booking.ts
+    │   │   ├── 📄 order.ts
+    │   ├── 📁 contexts/
+    │   │   ├── 📄 CartContext.tsx
+    │   │   ├── 📄 AuthContext.tsx
+    │   ├── 📁 app/
+    │   │   ├── 📁 shop/
+    │   │   │   ├── 📄 
+    │   │   │   ├── 📄 page.tsx
+    │   │   ├── 📁 services/
+    │   │   │   ├── 📄 
+    │   │   │   ├── 📁 book/
+    │   │   │   │   ├── 📄 page.tsx
+    │   │   │   ├── 📄 page.tsx
+    │   │   │   ├── 📄 layout.tsx
+    │   │   ├── 📁 reviews/
+    │   │   │   ├── 📄 page.tsx.bak
+    │   │   │   ├── 📄 page.tsx
+    │   │   ├── 📁 test-cookies/
+    │   │   │   ├── 📄 page.tsx
+    │   │   ├── 📁 wholesale/
+    │   │   │   ├── 📄 page.tsx.bak
+    │   │   │   ├── 📄 page.tsx
+    │   │   ├── 📁 training/
+    │   │   │   ├── 📄 
+    │   │   │   ├── 📁 enroll/
+    │   │   │   │   ├── 📄 page.tsx
+    │   │   │   ├── 📄 page.tsx
+    │   │   ├── 📁 track/
+    │   │   │   ├── 📄
+    │   │   ├── 📁 product/
+    │   │   │   ├── 📄
+    │   │   ├── 📁 admin/
+    │   │   │   ├── 📁 services/
+    │   │   │   │   ├── 📄 page.tsx
+    │   │   │   ├── 📁 products/
+    │   │   │   │   ├── 📄 
+    │   │   │   │   ├── 📁 new/
+    │   │   │   │   │   ├── 📄 page.tsx
+    │   │   │   │   ├── 📄 page.tsx.bak
+    │   │   │   │   ├── 📄 page.tsx
+    │   │   │   ├── 📁 training/
+    │   │   │   │   ├── 📄 
+    │   │   │   │   ├── 📄 page.tsx
+    │   │   │   ├── 📁 settings/
+    │   │   │   │   ├── 📄 page.tsx
+    │   │   │   ├── 📁 orders/
+    │   │   │   │   ├── 📄
+    │   │   │   │   ├── 📄 page.tsx
+    │   │   │   ├── 📁 bookings/
+    │   │   │   │   ├── 📄 
+    │   │   │   │   ├── 📄 page.tsx
+    │   │   │   ├── 📁 analytics/
+    │   │   │   │   ├── 📄 page.tsx
+    │   │   │   ├── 📁 login/
+    │   │   │   │   ├── 📄 page.tsx
+    │   │   │   ├── 📁 customers/
+    │   │   │   │   ├── 📄
+    │   │   │   │   ├── 📄 page.tsx
+    │   │   │   ├── 📄 loading.tsx
+    │   │   │   ├── 📄 page.tsx
+    │   │   │   ├── 📄 check-auth.tsx
+    │   │   │   ├── 📄 layout.tsx
+    │   │   ├── 📁 (marketing)/
+    │   │   │   ├── 📁 contact/
+    │   │   │   │   ├── 📄 page.tsx
+    │   │   │   ├── 📁 faq/
+    │   │   │   │   ├── 📄 page.tsx
+    │   │   │   ├── 📁 about/
+    │   │   │   │   ├── 📄 page.tsx
+    │   │   │   ├── 📁 blog/
+    │   │   │   │   ├── 📄
+    │   │   │   │   ├── 📄 page.tsx
+    │   │   │   ├── 📄 page.tsx
+    │   │   │   ├── 📄 layout.tsx
+    │   │   ├── 📁 (auth)/
+    │   │   │   ├── 📁 register/
+    │   │   │   │   ├── 📄 page.tsx
+    │   │   │   ├── 📁 login/
+    │   │   │   │   ├── 📄 page.tsx
+    │   │   │   ├── 📁 forgot-password/
+    │   │   │   │   ├── 📄 page.tsx
+    │   │   │   ├── 📄 layout.tsx
+    │   │   ├── 📁 api/
+    │   │   │   ├── 📁 services/
+    │   │   │   │   ├── 📁 book/
+    │   │   │   │       ├── 📄 route.ts
+    │   │   │   ├── 📁 reviews/
+    │   │   │   │   ├── 📄 route.ts
+    │   │   │   ├── 📁 test/
+    │   │   │   │   ├── 📁 connection/
+    │   │   │   │   │   ├── 📄 route.ts
+    │   │   │   │   ├── 📄 route.ts
+    │   │   │   ├── 📁 wishlist/
+    │   │   │   │   ├── 📄 route.ts
+    │   │   │   ├── 📁 wholesale/
+    │   │   │   │   ├── 📄 route.ts
+    │   │   │   ├── 📁 auth/
+    │   │   │   │   ├── 📁 register/
+    │   │   │   │   │   ├── 📄 route.ts
+    │   │   │   │   ├── 📁 login/
+    │   │   │   │       ├── 📄 route.ts
+    │   │   │   ├── 📁 admin/
+    │   │   │   │   ├── 📁 products/
+    │   │   │   │   │   ├── 📄
+    │   │   │   │   │   ├── 📄 route.ts
+    │   │   │   │   ├── 📁 orders/
+    │   │   │   │   │   ├── 📄 route.ts
+    │   │   │   │   ├── 📁 test/
+    │   │   │   │   │   ├── 📄 route.ts
+    │   │   │   │   ├── 📁 services/
+    │   │   │   │   │   ├── 📄 route.ts
+    │   │   │   │   ├── 📁 bookings/
+    │   │   │   │   │   ├── 📄 route.ts
+    │   │   │   │   ├── 📁 analytics/
+    │   │   │   │   │   ├── 📄 route.ts
+    │   │   │   │   ├── 📁 customers/
+    │   │   │   │   │   ├── 📄 route.ts
+    │   │   │   │   ├── 📁 create/
+    │   │   │   │       ├── 📄 route.ts
+    │   │   │   ├── 📁 cart/
+    │   │   │   │   ├── 📄 route.ts
+    │   │   │   ├── 📁 products/
+    │   │   │   │   ├── 📄
+    │   │   │   │   ├── 📁 slug/
+    │   │   │   │   │   ├── 📄 
+    │   │   │   │   ├── 📄 route.ts
+    │   │   │   ├── 📁 contact/
+    │   │   │       ├── 📄 route.ts
+    │   │   ├── 📁 dashboard/
+    │   │   │   ├── 📁 training/
+    │   │   │   │   ├── 📄 page.tsx
+    │   │   │   ├── 📁 wishlist/
+    │   │   │   │   ├── 📄 page.tsx
+    │   │   │   ├── 📁 services/
+    │   │   │   │   ├── 📄 page.tsx
+    │   │   │   ├── 📁 orders/
+    │   │   │   │   ├── 📄 page.tsx
+    │   │   │   ├── 📁 profile/
+    │   │   │   │   ├── 📄 page.tsx
+    │   │   │   ├── 📄 page.tsx
+    │   │   │   ├── 📄 layout.tsx
+    │   │   ├── 📁 checkout/
+    │   │   │   ├── 📄 page.tsx
+    │   │   ├── 📁 cart/
+    │   │   │   ├── 📄 page.tsx
+    │   │   ├── 📄 loading.tsx
+    │   │   ├── 📄 not-found.tsx
+    │   │   ├── 📄 layout.tsx
+    │   │   ├── 📄 error.tsx
+    │   │   ├── 📄 globals.css
+    │   ├── 📁 public/
+    │   │   ├── 📁 images/
+    │   │   │   ├── 📁 placeholders/
+    │   │   │   │   ├── 📄 wig1.jpg
+    │   │   │   ├── 📁 banners/
+    │   │   │   ├── 📄 hero1.jpg
+    │   │   │   ├── 📄 logo.svg
+    │   │   │   ├── 📄 hero-wig-revamp.jpg
+    │   │   │   ├── 📄 hero-bone-straight.jpg
+    │   │   │   ├── 📄 hero-curly-wigs.jpeg
+    │   │   │   ├── 📄 product-4.jpg
+    │   │   │   ├── 📄 wig1.jpg
+    │   │   │   ├── 📄 product-3.jpg
+    │   │   │   ├── 📄 product-1.jpg
+    │   │   │   ├── 📄 product-2.jpg
+    │   │   │   ├── 📄 category-colored.jpg
+    │   │   │   ├── 📄 category-curly.jpg
+    │   │   │   ├── 📄 category-closure.jpeg
+    │   │   │   ├── 📄 category-accessories.jpg
+    │   │   │   ├── 📄 category-bone-straight.jpg
+    │   │   │   ├── 📄 footer-background.jpg
+    │   │   │   ├── 📄 From tired to stunning! 😍✨ __Swipe to see how a little TLC can transform your wig_ __Ready to bring your old wig back to life_ Let’s make it pop again! 💖.jpeg
+    │   │   │   ├── 📄 download (81).jpeg
+    │   │   │   ├── 📄 category-frontal.jpg
+    │   │   │   ├── 📄 download (80).jpeg
+    │   │   ├── 📁 icons/
+    │   │   ├── 📄 favicon.ico
+    │   ├── 📁 lib/
+    │   │   ├── 📄 mongodb.ts
+    │   │   ├── 📄 utils.ts
+    │   │   ├── 📄 api.ts
+    │   │   ├── 📄 auth.ts
+    │   ├── 📄 tailwind.config.ts
+    │   ├── 📄 postcss.config.js
+    │   ├── 📄 vercel.json
+    │   ├── 📄 tsconfig.json
+    │   ├── 📄 next-env.d.ts
+    │   ├── 📄 middleware.ts
+    │   ├── 📄 package.json
+    │   ├── 📄 next.config.js
+    ├── 📁 docs/
+    │   ├── 📄 SETUP.md
+    │   ├── 📄 WHOLESALE_GUIDE.md
+    │   ├── 📄 API.md
+    │   ├── 📄 PAYMENT_SETUP.md
+    ├── 📄 structure.txt
+    ├── 📄 README.md
+    ├── 📄 update-dmin.js
+    ├── 📄 turbo.json
+    ├── 📄 project_summary.json
+    ├── 📄 introspect.py
+    ├── 📄 .gitignore
+    ├── 📄 PROJECT_GUIDE.md
+    ├── 📄 package.json
 PS C:\Users\jepha\Documents\jifywigs> 

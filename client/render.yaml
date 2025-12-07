@@ -1,0 +1,20 @@
+﻿services:
+  - type: web
+    name: jifywigs-client
+    runtime: node
+    buildCommand: |
+      npm install
+      cd ../shared && npm install && npm run build
+      cd ../client && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_PUBLIC_API_URL
+        value: https://jifywigs.onrender.com
+      - key: NEXT_PUBLIC_GOOGLE_CLIENT_ID
+        sync: false
+      - key: NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY
+        sync: false
+      - key: NEXT_PUBLIC_GA_ID
+        sync: false

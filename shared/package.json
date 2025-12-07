@@ -1,11 +1,11 @@
-{
+﻿{
   "name": "@jifywigs/shared",
   "version": "1.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "prebuild": "rimraf dist"
+    "prebuild": "rm -rf dist || true"
   },
   "dependencies": {
     "mongoose": "^8.20.1"

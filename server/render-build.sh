@@ -1,16 +1,16 @@
 #!/bin/bash
-set -e
-
-echo "📦 Installing root dependencies..."
+# Install server dependencies
 npm install
 
-echo "🔨 Building shared package..."
+# Build shared folder first
 cd ../shared
 npm install
 npm run build
 cd ../server
 
-echo "🔨 Building server..."
+# Build TypeScript
 npm run build
 
-echo "✅ Build completed successfully!"
+# Verify build output
+echo "Build completed. Checking dist folder:"
+ls -la dist/

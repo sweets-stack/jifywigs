@@ -5,7 +5,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "prepublishOnly": "npm run build"
+    "prebuild": "rimraf dist"
   },
   "dependencies": {
     "mongoose": "^8.20.1"

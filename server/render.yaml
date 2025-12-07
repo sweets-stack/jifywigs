@@ -1,12 +1,9 @@
 services:
   - type: web
-    name: jifywigs-server
-    env: node
-    region: oregon
-    buildCommand: |
-      npm install
-      cd ../shared && npm install && npm run build
-      cd ../server && npm run build
+    name: jifywigs-api
+    runtime: node
+    rootDir: .
+    buildCommand: chmod +x render-build.sh && ./render-build.sh
     startCommand: npm start
     envVars:
       - key: NODE_ENV
@@ -17,7 +14,14 @@ services:
         sync: false
       - key: JWT_SECRET
         sync: false
+      - key: FRONTEND_URL
+        value: https://jifywigs.vercel.app
       - key: GOOGLE_CLIENT_ID
         sync: false
       - key: GOOGLE_CLIENT_SECRET
         sync: false
+      - key: PAYSTACK_SECRET_KEY
+        sync: false
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      # Add any other environment variables you need

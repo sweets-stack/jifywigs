@@ -1,11 +1,10 @@
-{
+﻿{
   "name": "jifywigs-client",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev -p 3005",
-    "build": "cd ../shared && npm ci --production && npm run build && cd ../client && next build",
-    "build:shared": "cd ../shared && npm install && npm run build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -26,7 +25,7 @@
     "js-cookie": "^3.0.5",
     "lucide": "^0.556.0",
     "lucide-react": "^0.364.0",
-    "next": "14.0.4",
+    "next": "^16.0.7",
     "next-themes": "^0.2.1",
     "react": "^18",
     "react-datepicker": "^8.10.0",

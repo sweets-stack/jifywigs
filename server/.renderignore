@@ -1,0 +1,9 @@
+# .renderignore
+node_modules/
+dist/
+.env
+.env.local
+.env.development
+.git/
+.vscode/
+*.log

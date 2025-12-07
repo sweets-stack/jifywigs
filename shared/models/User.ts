@@ -1,5 +1,5 @@
 // shared/models/User.ts
-import { Schema, model } from 'mongoose';
+import { Schema, model, Document } from 'mongoose';
 import { UserRole } from '../enums';
 
 export const UserSchema = new Schema(

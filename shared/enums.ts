@@ -4,7 +4,43 @@ export enum UserRole {
   ADMIN = 'admin',
   SUPER_ADMIN = 'super_admin',
   MANAGER = 'manager',
-  STAFF = 'staff',
+  STAFF = 'staff'
+}
+
+export enum OrderStatus {
+  PENDING = 'pending',
+  PROCESSING = 'processing',
+  CONFIRMED = 'confirmed',
+  SHIPPED = 'shipped',
+  DELIVERED = 'delivered',
+  CANCELLED = 'cancelled',
+  REFUNDED = 'refunded'
+}
+
+export enum PaymentMethod {
+  PAYSTACK = 'paystack',
+  STRIPE = 'stripe',
+  BANK_TRANSFER = 'bank_transfer',
+  CASH = 'cash'
+}
+
+export enum TrainingMode {
+  PHYSICAL = 'physical',
+  ONLINE = 'online',
+  HYBRID = 'hybrid'
+}
+
+export enum TrainingStatus {
+  UPCOMING = 'upcoming',
+  ONGOING = 'ongoing',
+  COMPLETED = 'completed',
+  CANCELLED = 'cancelled'
+}
+
+export enum CertificateStatus {
+  PENDING = 'pending',
+  ISSUED = 'issued',
+  REVOKED = 'revoked'
 }
 
 export enum BookingStatus {
@@ -12,22 +48,22 @@ export enum BookingStatus {
   CONFIRMED = 'confirmed',
   RECEIVED = 'received',
   IN_PROGRESS = 'in_progress',
-  AWAITING_APPROVAL = 'awaiting_approval',
   COMPLETED = 'completed',
-  CANCELLED = 'cancelled',
-  REJECTED = 'rejected',
+  CANCELLED = 'cancelled'
 }
 
-export enum OrderStatus {
+export enum ProductStatus {
+  IN_STOCK = 'in_stock',
+  LOW_STOCK = 'low_stock',
+  OUT_OF_STOCK = 'out_of_stock',
+  DISCONTINUED = 'discontinued'
+}
+
+export enum ReviewStatus {
   PENDING = 'pending',
-  CONFIRMED = 'confirmed',
-  PROCESSING = 'processing',
-  SHIPPED = 'shipped',
-  DELIVERED = 'delivered',
-  CANCELLED = 'cancelled',
-  REFUNDED = 'refunded',
+  APPROVED = 'approved',
+  REJECTED = 'rejected'
 }
-
 export enum ProductType {
   WIG = 'wig',
   ACCESSORY = 'accessory',
@@ -47,9 +83,4 @@ export enum WigLength {
   MEDIUM = 'medium',
   LONG = 'long',
   EXTRA_LONG = 'extra_long',
-}
-export enum TrainingMode {
-  ONLINE = 'online',
-  PHYSICAL = 'physical',
-  HYBRID = 'hybrid',
 }

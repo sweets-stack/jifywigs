@@ -1,5 +1,6 @@
 // server/src/routes/webhook.routes.ts
 import { Router } from 'express';
+import express from 'express'; // ADD THIS IMPORT
 import { handlePaystackWebhook, handleStripeWebhook } from '../controllers/webhook.controller';
 
 const router = Router();

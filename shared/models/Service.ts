@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose'; // Add model import
+import { Schema, model, Document } from 'mongoose'; // Add model import
 
 export const ServiceSchema = new Schema(
   {

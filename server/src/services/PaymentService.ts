@@ -2,7 +2,10 @@
 import Stripe from 'stripe';
 import { PaymentMethod } from '@jifywigs/shared';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: '2024-06-20' });
+// Use correct Stripe API version
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', { 
+  apiVersion: '2023-10-16' // Updated to correct version
+});
 
 export class PaymentService {
   static async createPaymentIntent({

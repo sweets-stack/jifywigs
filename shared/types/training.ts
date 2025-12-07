@@ -35,7 +35,7 @@ export interface IEnrollment {
   _id?: string;
   userId: string;
   trainingId: string;
-  paymentMethod: PaymentMethod;
+  paymentMethod: string;
   amountPaid: number;
   currency: string;
   status: 'pending' | 'confirmed' | 'completed' | 'cancelled';

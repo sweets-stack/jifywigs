@@ -1,7 +1,13 @@
 // server/src/controllers/webhook.controller.ts
 import { Request, Response } from 'express';
+import Stripe from 'stripe'; // ADD THIS IMPORT
 import { Order } from '../models';
 import { PaymentService } from '../services/PaymentService';
+
+// Initialize Stripe
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', { 
+  apiVersion: '2023-10-16' as any 
+});
 
 // Paystack webhook
 export const handlePaystackWebhook = async (req: Request, res: Response) => {

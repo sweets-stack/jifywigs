@@ -1,4 +1,4 @@
-﻿import mongoose, { Schema, model, models } from 'mongoose';
+﻿import mongoose, { Schema, model, models, Document } from 'mongoose';
 
 const ProductSchema = new Schema({
   name: { type: String, required: true },

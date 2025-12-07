@@ -1,5 +1,5 @@
 ﻿// shared/models/Review.ts
-import { Schema, model } from 'mongoose';
+import { Schema, model, Document } from 'mongoose';
 
 export const ReviewSchema = new Schema(
   {

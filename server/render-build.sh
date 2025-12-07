@@ -1,22 +1,16 @@
 #!/bin/bash
-echo "🚀 Starting Render deployment build..."
+set -e
 
-# Install dependencies
-echo "📦 Installing dependencies..."
+echo "📦 Installing root dependencies..."
 npm install
 
-# Build TypeScript
-echo "🔨 Building TypeScript..."
+echo "🔨 Building shared package..."
+cd ../shared
+npm install
+npm run build
+cd ../server
+
+echo "🔨 Building server..."
 npm run build
 
-# Check if build succeeded
-if [ $? -eq 0 ]; then
-    echo "✅ Build successful!"
-    echo "📁 Dist folder contents:"
-    ls -la dist/
-else
-    echo "❌ Build failed!"
-    exit 1
-fi
-
-echo "🎉 Build completed successfully!"
+echo "✅ Build completed successfully!"

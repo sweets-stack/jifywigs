@@ -3,7 +3,8 @@ import fs from 'fs';
 import path from 'path';
 import { Product } from '../schemas/Product';
 import { Service } from '../schemas/Service';
-import { Training } from '../schemas/Training';
+// Remove Training import if not using
+// import { Training } from '../schemas/Training';
 
 export class SeoService {
   static async generateSitemap() {
@@ -12,7 +13,7 @@ export class SeoService {
 
     const products = await Product.find({}).select('slug updatedAt');
     const services = await Service.find({ isActive: true }).select('slug updatedAt');
-    const trainings = await Training.find({ status: 'published' }).select('slug updatedAt');
+    // const trainings = await Training.find({ status: 'published' }).select('slug updatedAt');
 
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -65,9 +66,10 @@ export class SeoService {
     )
     .join('')}
 
-  ${trainings
+  ${'' /* Remove trainings section if not using
+  trainings
     .map(
-      (t) => `
+      (t: any) => `
   <url>
     <loc>${baseUrl}/training/${t.slug}</loc>
     <lastmod>${t.updatedAt?.toISOString() || timestamp}</lastmod>
@@ -75,7 +77,7 @@ export class SeoService {
     <priority>0.7</priority>
   </url>`
     )
-    .join('')}
+    .join('')*/}
 </urlset>`;
 
     fs.writeFileSync(path.join(process.cwd(), 'public', 'sitemap.xml'), sitemap);

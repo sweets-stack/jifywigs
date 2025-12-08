@@ -1,6 +1,6 @@
-// client/app/(marketing)/blog/[slug]/page.tsx
 export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  // In real app: fetch post from CMS
+  const { slug } = params;
+  
   const post = {
     title: 'How to Care for Your Human Hair Wig',
     date: 'Dec 1, 2025',

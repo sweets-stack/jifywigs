@@ -17,7 +17,7 @@ import {
 import { StatCard } from '@/components/admin/StatCard';
 import { Button } from '@/components/ui/Button';
 import { Card, CardHeader, CardContent } from '@/components/ui/Card';
-import { useAuth } from '../../contexts/AuthContext';
+import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 
 interface DashboardStats {
@@ -331,7 +331,7 @@ export default function AdminOverview() {
         />
         <StatCard
           title="Revenue"
-          value={`₦${(overview.revenue || overview.totalRevenue || 0).toLocaleString()}`}
+          value={`â‚¦${(overview.revenue || overview.totalRevenue || 0).toLocaleString()}`}
           icon={<CurrencyDollarIcon className="w-6 h-6" />}
         />
       </div>
@@ -342,7 +342,7 @@ export default function AdminOverview() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Low Stock (≤5)</p>
+                <p className="text-sm text-gray-600">Low Stock (â‰¤5)</p>
                 <p className="text-2xl font-bold text-gray-900">{overview.lowStockProducts || 0}</p>
               </div>
               <div className="p-3 bg-yellow-100 rounded-lg">
@@ -369,7 +369,7 @@ export default function AdminOverview() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Avg. Order Value</p>
-                <p className="text-2xl font-bold text-gray-900">₦{(overview.avgOrderValue || 0).toLocaleString()}</p>
+                <p className="text-2xl font-bold text-gray-900">â‚¦{(overview.avgOrderValue || 0).toLocaleString()}</p>
               </div>
               <div className="p-3 bg-green-100 rounded-lg">
                 <ArrowTrendingUpIcon className="w-6 h-6 text-green-600" />
@@ -385,7 +385,7 @@ export default function AdminOverview() {
           <CardHeader className="flex items-center justify-between">
             <h2 className="text-lg font-semibold">Recent Bookings</h2>
             <Link href="/admin/bookings" className="text-sm text-jify-primary hover:underline">
-              View all →
+              View all â†’
             </Link>
           </CardHeader>
           <CardContent>
@@ -406,7 +406,7 @@ export default function AdminOverview() {
                         {booking.status.replace('_', ' ')}
                       </span>
                       <p className="text-sm text-gray-600 mt-1">
-                        ₦{booking.totalAmount.toLocaleString()}
+                        â‚¦{booking.totalAmount.toLocaleString()}
                       </p>
                     </div>
                   </div>
@@ -424,7 +424,7 @@ export default function AdminOverview() {
           <CardHeader className="flex items-center justify-between">
             <h2 className="text-lg font-semibold">Recent Orders</h2>
             <Link href="/admin/orders" className="text-sm text-jify-primary hover:underline">
-              View all →
+              View all â†’
             </Link>
           </CardHeader>
           <CardContent>
@@ -447,7 +447,7 @@ export default function AdminOverview() {
                         {order.status}
                       </span>
                       <p className="text-sm font-medium mt-1">
-                        ₦{(order.total || order.totalAmount || 0).toLocaleString()}
+                        â‚¦{(order.total || order.totalAmount || 0).toLocaleString()}
                       </p>
                     </div>
                   </div>

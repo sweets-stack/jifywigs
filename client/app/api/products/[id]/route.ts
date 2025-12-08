@@ -1,40 +1,23 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { connectToDatabase } from '@/lib/mongodb';
-import { Product } from '@jifywigs/shared/models';
-import mongoose from 'mongoose';
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
 
 export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
-    await connectToDatabase();
+    const response = await fetch(`${API_BASE_URL}/products/${params.id}`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
     
-    const { id } = params;
-    
-    // Check if it's a valid ObjectId
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return NextResponse.json(
-        { error: 'Invalid product ID' },
-        { status: 400 }
-      );
-    }
-    
-    const product = await Product.findById(id).lean();
-    
-    if (!product) {
-      return NextResponse.json(
-        { error: 'Product not found' },
-        { status: 404 }
-      );
-    }
-    
-    return NextResponse.json(product);
-    
+    const data = await response.json();
+    return NextResponse.json(data, { status: response.status });
   } catch (error: any) {
-    console.error('Error fetching product:', error);
     return NextResponse.json(
-      { error: 'Failed to fetch product', message: error.message },
+      { error: error.message || 'Failed to fetch product' },
       { status: 500 }
     );
   }
@@ -45,38 +28,23 @@ export async function PUT(
   { params }: { params: { id: string } }
 ) {
   try {
-    await connectToDatabase();
-    
-    const { id } = params;
-    
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return NextResponse.json(
-        { error: 'Invalid product ID' },
-        { status: 400 }
-      );
-    }
-    
     const body = await request.json();
+    const token = request.cookies.get('token')?.value;
     
-    const product = await Product.findByIdAndUpdate(
-      id,
-      { ...body, updatedAt: new Date() },
-      { new: true, runValidators: true }
-    ).lean();
+    const response = await fetch(`${API_BASE_URL}/products/${params.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        ...(token && { 'Authorization': `Bearer ${token}` }),
+      },
+      body: JSON.stringify(body),
+    });
     
-    if (!product) {
-      return NextResponse.json(
-        { error: 'Product not found' },
-        { status: 404 }
-      );
-    }
-    
-    return NextResponse.json(product);
-    
+    const data = await response.json();
+    return NextResponse.json(data, { status: response.status });
   } catch (error: any) {
-    console.error('Error updating product:', error);
     return NextResponse.json(
-      { error: 'Failed to update product', message: error.message },
+      { error: error.message || 'Failed to update product' },
       { status: 500 }
     );
   }
@@ -87,32 +55,21 @@ export async function DELETE(
   { params }: { params: { id: string } }
 ) {
   try {
-    await connectToDatabase();
+    const token = request.cookies.get('token')?.value;
     
-    const { id } = params;
+    const response = await fetch(`${API_BASE_URL}/products/${params.id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        ...(token && { 'Authorization': `Bearer ${token}` }),
+      },
+    });
     
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return NextResponse.json(
-        { error: 'Invalid product ID' },
-        { status: 400 }
-      );
-    }
-    
-    const product = await Product.findByIdAndDelete(id).lean();
-    
-    if (!product) {
-      return NextResponse.json(
-        { error: 'Product not found' },
-        { status: 404 }
-      );
-    }
-    
-    return NextResponse.json({ message: 'Product deleted successfully' });
-    
+    const data = await response.json();
+    return NextResponse.json(data, { status: response.status });
   } catch (error: any) {
-    console.error('Error deleting product:', error);
     return NextResponse.json(
-      { error: 'Failed to delete product', message: error.message },
+      { error: error.message || 'Failed to delete product' },
       { status: 500 }
     );
   }

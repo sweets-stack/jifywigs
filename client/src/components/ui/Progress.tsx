@@ -1,7 +1,7 @@
 // client/src/components/ui/Progress.tsx
 'use client';
 
-import { cn } from '../../../lib/utils';
+import { cn } from '@/lib/utils';
 
 interface ProgressProps {
   value: number;

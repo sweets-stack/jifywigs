@@ -1,49 +1,49 @@
-﻿import { NextRequest, NextResponse } from 'next/server';
-import { connectToDatabase } from '@/lib/mongodb';
-import { Product } from '@jifywigs/shared/models';
+import { NextRequest, NextResponse } from 'next/server';
 
-export const dynamic = 'force-dynamic';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
 
 export async function GET(request: NextRequest) {
   try {
-    await connectToDatabase();
-    
     const url = new URL(request.url);
-    const page = parseInt(url.searchParams.get('page') || '1');
-    const limit = parseInt(url.searchParams.get('limit') || '20');
-    const skip = (page - 1) * limit;
-    const category = url.searchParams.get('category');
+    const queryString = url.search;
     
-    const filter: any = {};
-    if (category) filter.category = category;
+    const response = await fetch(`${API_BASE_URL}/products${queryString}`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
     
-    const products = await Product.find(filter)
-      .sort({ createdAt: -1 })
-      .skip(skip)
-      .limit(limit)
-      .lean();
-    
-    const total = await Product.countDocuments(filter);
-    
-    return NextResponse.json({
-      products,
-      pagination: {
-        page,
-        limit,
-        total,
-        pages: Math.ceil(total / limit)
-      }
-    }, { status: 200 });
+    const data = await response.json();
+    return NextResponse.json(data, { status: response.status });
   } catch (error: any) {
-    console.error('Products error:', error);
-    return NextResponse.json({
-      products: [],
-      pagination: {
-        page: 1,
-        limit: 20,
-        total: 0,
-        pages: 0
-      }
-    }, { status: 200 });
+    console.error('Products proxy error:', error);
+    return NextResponse.json(
+      { error: error.message || 'Failed to fetch products' },
+      { status: 500 }
+    );
+  }
+}
+
+export async function POST(request: NextRequest) {
+  try {
+    const body = await request.json();
+    const token = request.cookies.get('token')?.value;
+    
+    const response = await fetch(`${API_BASE_URL}/products`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...(token && { 'Authorization': `Bearer ${token}` }),
+      },
+      body: JSON.stringify(body),
+    });
+    
+    const data = await response.json();
+    return NextResponse.json(data, { status: response.status });
+  } catch (error: any) {
+    return NextResponse.json(
+      { error: error.message || 'Failed to create product' },
+      { status: 500 }
+    );
   }
 }

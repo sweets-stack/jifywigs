@@ -1,12 +1,13 @@
 # Project Guide: jifywigs
 
-*Generated on 2025-12-01 17:00:07*
+*Generated on 2025-12-08 19:46:09*
 
 ## 📋 Summary
 A modern e-commerce platform with services booking system. A Next.js application with React. Frontend-focused application.
 
 ## 🛠️ Technology Stack
 - Express.js
+- Firebase
 - MongoDB
 - Next.js
 - Node.js
@@ -20,10 +21,14 @@ A modern e-commerce platform with services booking system. A Next.js application
 - **Backend**: server
 - **Database**: MongoDB
 - **Major Directories**: client, docs, scripts, server, shared
-- **API Directories**: client, docs
+- **API Directories**: client, docs, server
 
 ## 📁 Key Files
 - `README.md`
+- `client/.next/package.json`
+- `client/.next/static/chunks/fallback/main.js`
+- `client/.next/types/package.json`
+- `client/next-env.d.ts`
 - `client/next.config.js`
 - `client/package.json`
 - `client/postcss.config.js`
@@ -32,25 +37,36 @@ A modern e-commerce platform with services booking system. A Next.js application
 - `package.json`
 - `server/package.json`
 - `server/tsconfig.json`
+- `shared/package.json`
+- `shared/tsconfig.json`
 
 ## 📦 Dependencies
+- @headlessui/react (client/package.json) (prod)
 - @heroicons/react (client/package.json) (prod)
 - @hookform/resolvers (client/package.json) (prod)
+- @jifywigs/shared (client/package.json) (prod)
 - @sendgrid/mail (server/package.json) (prod)
 - @tanstack/react-query (client/package.json) (prod)
-- @types/bcryptjs (server/package.json) (dev)
-- @types/compression (server/package.json) (dev)
-- @types/cors (server/package.json) (dev)
-- @types/express (server/package.json) (dev)
-- @types/geoip-lite (server/package.json) (dev)
-- @types/jsonwebtoken (server/package.json) (dev)
-- @types/multer (server/package.json) (dev)
+- @types/bcryptjs (server/package.json) (prod)
+- @types/compression (server/package.json) (prod)
+- @types/cors (server/package.json) (prod)
+- @types/express (server/package.json) (prod)
+- @types/geoip-lite (server/package.json) (prod)
+- @types/helmet (server/package.json) (prod)
+- @types/jsonwebtoken (server/package.json) (prod)
+- @types/mongoose (shared/package.json) (dev)
+- @types/morgan (server/package.json) (prod)
+- @types/multer (server/package.json) (prod)
 - @types/node (client/package.json) (dev)
-- @types/node (server/package.json) (dev)
+- @types/node (server/package.json) (prod)
+- @types/node (shared/package.json) (dev)
 - @types/react (client/package.json) (dev)
+- @types/react-datepicker (client/package.json) (prod)
 - @types/react-dom (client/package.json) (dev)
-- @types/ua-parser-js (server/package.json) (dev)
-- @types/validator (server/package.json) (dev)
+- @types/react-dropzone (client/package.json) (dev)
+- @types/ua-parser-js (server/package.json) (prod)
+- @types/uuid (server/package.json) (prod)
+- @types/validator (server/package.json) (prod)
 - @typescript-eslint/eslint-plugin (client/package.json) (dev)
 - @typescript-eslint/eslint-plugin (server/package.json) (dev)
 - @typescript-eslint/parser (client/package.json) (dev)
@@ -64,7 +80,6 @@ A modern e-commerce platform with services booking system. A Next.js application
 - cloudinary (server/package.json) (prod)
 - clsx (client/package.json) (prod)
 - compression (server/package.json) (prod)
-- concurrently (package.json) (dev)
 - cors (server/package.json) (prod)
 - date-fns (client/package.json) (prod)
 - dotenv (server/package.json) (prod)
@@ -74,37 +89,49 @@ A modern e-commerce platform with services booking system. A Next.js application
 - express (server/package.json) (prod)
 - express-rate-limit (server/package.json) (prod)
 - express-validator (server/package.json) (prod)
+- firebase (client/package.json) (prod)
 - framer-motion (client/package.json) (prod)
 - geoip-lite (server/package.json) (prod)
+- google-auth-library (server/package.json) (prod)
 - helmet (server/package.json) (prod)
+- jose (client/package.json) (prod)
 - js-cookie (client/package.json) (prod)
 - jsonwebtoken (server/package.json) (prod)
+- lucide (client/package.json) (prod)
 - lucide-react (client/package.json) (prod)
 - mongoose (server/package.json) (prod)
+- mongoose (shared/package.json) (prod)
+- morgan (server/package.json) (prod)
 - multer (server/package.json) (prod)
 - next (client/package.json) (prod)
 - next-themes (client/package.json) (prod)
 - nodemailer (server/package.json) (prod)
 - nodemon (server/package.json) (dev)
-- paystack (server/package.json) (prod)
 - pdfkit (server/package.json) (prod)
 - postcss (client/package.json) (dev)
-- prettier (package.json) (dev)
 - rate-limiter-flexible (server/package.json) (prod)
 - react (client/package.json) (prod)
+- react-datepicker (client/package.json) (prod)
 - react-dom (client/package.json) (prod)
+- react-dropzone (client/package.json) (prod)
 - react-hook-form (client/package.json) (prod)
 - react-hot-toast (client/package.json) (prod)
+- react-icons (client/package.json) (prod)
 - redis (server/package.json) (prod)
+- rimraf (server/package.json) (dev)
+- rimraf (shared/package.json) (dev)
 - sharp (server/package.json) (prod)
 - stripe (server/package.json) (prod)
 - swr (client/package.json) (prod)
 - tailwind-merge (client/package.json) (prod)
 - tailwindcss (client/package.json) (dev)
 - ts-node (server/package.json) (dev)
+- tsconfig-paths (server/package.json) (dev)
 - typescript (client/package.json) (dev)
 - typescript (server/package.json) (dev)
+- typescript (shared/package.json) (dev)
 - ua-parser-js (server/package.json) (prod)
+- uuid (server/package.json) (prod)
 - validator (server/package.json) (prod)
 - winston (server/package.json) (prod)
 - zod (client/package.json) (prod)
@@ -112,45 +139,72 @@ A modern e-commerce platform with services booking system. A Next.js application
 
 ## 🚀 How to Run
 ```bash
-npm run dev # concurrently "npm run dev:client" "npm run dev:server"
+cd client && npm run dev # next dev
 ```
 ```bash
-npm run dev:client # cd client && npm run dev
+cd client && npm run build # next build
 ```
 ```bash
-npm run dev:server # cd server && npm run dev
+cd client && npm run start # next start
 ```
 ```bash
-npm run build # npm run build:client && npm run build:server
+cd server && npm run start # node dist/server.js
 ```
 ```bash
-npm run build:client # cd client && npm run build
+cd server && npm run dev # nodemon src/server.ts
 ```
 ```bash
-npm run build:server # cd server && npm run build
+cd server && npm run build # tsc
 ```
 ```bash
-npm run start # concurrently "npm run start:client" "npm run start:server"
+cd server && npm run prebuild # npm run clean
 ```
 ```bash
-npm run start:client # cd client && npm start
+cd server && npm run clean # rimraf dist
 ```
 ```bash
-npm run start:server # cd server && npm start
+cd server && npm run render-build # npm install --include=dev && cd ../shared && npm install --include=dev && npm run build && cd ../server && npm run build
 ```
 ```bash
-npm run format # prettier --write "**/*.{ts,tsx,js,jsx,json,md}"
+cd shared && npm run build # tsc
 ```
 
 ## 🌐 API Endpoints
+
+### From `server/src/app.ts`:
+- `GET /health` (Express.js)
+
+### From `server/src/server.ts`:
+- `GET /api/health` (Express.js)
+- `GET /` (Express.js)
 
 ### From `server/src/routes/admin.routes.ts`:
 - `GET /analytics` (Express.js)
 - `GET /analytics/export` (Express.js)
 
-### From `server/src/routes/webhook.routes.ts`:
-- `POST /paystack` (Express.js)
-- `POST /stripe` (Express.js)
+### From `server/src/routes/auth.routes.ts`:
+- `POST /register` (Express.js)
+- `POST /login` (Express.js)
+- `POST /google` (Express.js)
+- `POST /forgot-password` (Express.js)
+- `POST /reset-password` (Express.js)
+- `POST /logout` (Express.js)
+- `GET /me` (Express.js)
+
+### From `server/src/routes/order.routes.ts`:
+- `POST /` (Express.js)
+- `GET /me` (Express.js)
+- `PATCH /:id/status` (Express.js)
+
+### From `server/src/routes/products.ts`:
+- `GET /` (Express.js)
+- `GET /:id` (Express.js)
+- `POST /` (Express.js)
+- `PUT /:id` (Express.js)
+- `DELETE /:id` (Express.js)
+
+*... and 4 more API endpoints*
+
 
 ## 💡 Important Notes
-No special notes.
+Found 65 TODO/FIXME comments in code.

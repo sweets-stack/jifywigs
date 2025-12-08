@@ -1,5 +1,5 @@
 {
-  "name": "jifywigs",
+  "name": "jifywigs-monorepo",
   "version": "1.0.0",
   "private": true,
   "workspaces": [
@@ -11,20 +11,9 @@
     "dev": "turbo run dev",
     "build": "turbo run build",
     "start": "turbo run start",
-    "lint": "turbo run lint",
-    "clean": "turbo run clean",
-    "deploy:client": "cd client && vercel --prod",
-    "deploy:server": "cd server && npm run build",
-    "test": "echo \"No tests yet\" && exit 0"
+    "clean": "turbo run clean"
   },
-  
   "devDependencies": {
-    "rimraf": "^5.0.5",
-    "turbo": "^1.13.3"
-  },
-  "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=9.0.0"
-  },
-  "packageManager": "npm@9.0.0"
+    "turbo": "latest"
+  }
 }

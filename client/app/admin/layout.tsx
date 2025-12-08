@@ -3,7 +3,7 @@
 import { usePathname } from 'next/navigation';
 import { AdminSidebar } from '@/components/layout/AdminSidebar';
 import { MobileSidebar } from '@/components/admin/MobileSidebar';
-import { useAuth } from '../../contexts/AuthContext';
+import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -29,13 +29,13 @@ export default function AdminLayout({
   // For all other admin pages, check auth
   useEffect(() => {
     if (!isLoading) {
-      console.log('🔍 Admin layout - Checking auth:', { isAuthenticated, isAdmin });
+      console.log('ðŸ” Admin layout - Checking auth:', { isAuthenticated, isAdmin });
       
       if (!isAuthenticated || !isAdmin) {
-        console.log('❌ Not authenticated or not admin, redirecting to admin login');
+        console.log('âŒ Not authenticated or not admin, redirecting to admin login');
         router.push('/admin/login');
       } else {
-        console.log('✅ Admin access granted');
+        console.log('âœ… Admin access granted');
         setIsCheckingAuth(false);
       }
     }

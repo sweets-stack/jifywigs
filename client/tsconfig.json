@@ -1,7 +1,7 @@
-﻿{
+{
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "es2022"],
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -13,18 +13,18 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
+    "plugins": [{ "name": "next" }],
+    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@jifywigs/shared/*": ["../shared/dist/*"],
-      "@/contexts/*": ["./contexts/*"]
-    },
-    "typeRoots": ["./types", "./node_modules/@types"]
+      "@/components/*": ["./src/components/*"],
+      "@/lib/*": ["./src/lib/*"],
+      "@/hooks/*": ["./src/hooks/*"],
+      "@/types/*": ["./src/types/*"],
+      "@/contexts/*": ["./contexts/*"],
+      "@/utils/*": ["./utils/*"]
+    }
   },
-  "include": ["src/**/*", "types/**/*", "app/**/*", ".next/types/**/*.ts", "utils", "app/api/admin/create/route.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }
